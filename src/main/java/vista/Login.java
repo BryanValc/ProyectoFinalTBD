@@ -4,16 +4,33 @@
  */
 package vista;
 
+import conexionBD.ConexionBD;
+import controlador.UsuarioDAO;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.Usuario;
+import javax.swing.*;
+
 /**
  *
  * @author bryan
  */
 public class Login extends javax.swing.JFrame {
+    ConexionBD conexion = ConexionBD.getInstance();
+    UsuarioDAO usuarioDAO = new UsuarioDAO();
+    JLabel lblUsuario = new JLabel("Usuario");
+    JLabel lblContraseña = new JLabel("Contraseña");
+    JTextField jtfUsuario = new JTextField();
+    JPasswordField jpfContraseña = new JPasswordField();
+    JButton ingresar = new JButton("Ingresar");
+    static ImageIcon image;
+    JLabel label;
 
     /**
      * Creates new form Login
      */
-    public Login() {
+    public Login() throws IOException {
         initComponents();
     }
 
@@ -72,7 +89,11 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                try {
+                    new Login().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

@@ -6,7 +6,7 @@ package controlador;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import modelo.CountryLanguage;
+import modelo.Usuario;
 import conexionBD.ConexionBD;
 import java.util.ArrayList;
 
@@ -14,31 +14,29 @@ import java.util.ArrayList;
  *
  * @author bryan
  */
-public class CountryLanguageDAO {
+public class UsuarioDAO {
     
-    public boolean insertarRegistro(CountryLanguage c){
+    public boolean insertarRegistro(Usuario u){
         boolean resultado=false;
-        resultado=ConexionBD.AgregarRegistro(c);
+        resultado=ConexionBD.AgregarRegistro(u);
         return resultado;
     }
     
-    public boolean modificarRegistro(CountryLanguage c){
+    public boolean modificarRegistro(Usuario u){
         boolean resultado=false;
-        resultado=ConexionBD.actualizarRegistro(c);
+        resultado=ConexionBD.actualizarRegistro(u);
         return resultado;
     }
     
-    public ArrayList<CountryLanguage> buscar(String filtro){
-        ArrayList<CountryLanguage> lista= new ArrayList<CountryLanguage>();
+    public ArrayList<Usuario> buscar(String filtro){
+        ArrayList<Usuario> lista= new ArrayList<Usuario>();
         ResultSet rs = ConexionBD.ejecutarConsulta(filtro);
         try{
             if(rs.next()){
                 do{
-                    lista.add(new CountryLanguage(
+                    lista.add(new Usuario(
                             rs.getString(1),
-                            rs.getString(2),
-                            rs.getString(3).charAt(0),
-                            rs.getFloat(4)));
+                            rs.getString(2)));
                 }while(rs.next());
             
             }
@@ -49,11 +47,11 @@ public class CountryLanguageDAO {
         return lista;
     }
     
-    public boolean borrarRegistro(CountryLanguage c){
+    public boolean borrarRegistro(Usuario u){
         boolean resultado = false;
-        String sql = "DELETE FROM CountryLanguage WHERE CountryCode='"+c.getCountryCode()+"' AND Language='"+c.getLanguage()+"'";
+        String sql = "DELETE FROM Usuario WHERE Username='"+u.getNombre()+"'";
         resultado = ConexionBD.eliminarRegistro(sql);
         return resultado;
     }
-    
+   
 }

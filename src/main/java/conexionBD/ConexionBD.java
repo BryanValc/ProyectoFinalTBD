@@ -149,6 +149,18 @@ public class ConexionBD {
         return false;
     }
     
+    public static boolean actualizarRegistro(Usuario usuario) {
+	try {
+            pstm = conexion.prepareStatement("UPDATE Usuario SET Password=? WHERE Username='"+usuario.getNombre()+"'");
+            pstm.setString(1, usuario.getContraseña());
+			
+            pstm.executeUpdate();
+            return true;
+	} catch (Exception e) {
+	}
+        return false;
+    }
+    
     public static boolean AgregarRegistro(City city) {
 	try {
             pstm = conexion.prepareStatement("INSERT INTO City VALUES(?,?,?,?,?)");
@@ -202,6 +214,21 @@ public class ConexionBD {
             pstm.setString(13, country.getHeadOfState());
             pstm.setInt(14, country.getCapital());
             pstm.setString(15, country.getCode2());
+			
+            pstm.executeUpdate();
+            return true;
+            
+        } catch (SQLException e) {
+            
+	}
+	return false;
+    }
+    
+    public static boolean AgregarRegistro(Usuario usuario) {
+	try {
+            pstm = conexion.prepareStatement("INSERT INTO Usuario VALUES(?,?)");
+            pstm.setString(1, usuario.getNombre());
+            pstm.setString(2, usuario.getContraseña());
 			
             pstm.executeUpdate();
             return true;
