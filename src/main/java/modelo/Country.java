@@ -20,12 +20,12 @@ public class Country {
     float GNP;
     float GNPOld;
     String localName;
-    String govermentForm;
+    String governmentForm;
     String headOfState;
     int capital;
     String code2;
 
-    public Country(String code, String name, String continent, String region, float surfaceArea, int indepYear, int population, float lifeExpectancy, float GNP, float GNPOld, String localName, String govermentForm, String headOfState, int capital, String code2) {
+    public Country(String code, String name, String continent, String region, float surfaceArea, int indepYear, int population, float lifeExpectancy, float GNP, float GNPOld, String localName, String governmentForm, String headOfState, int capital, String code2) {
         this.code = code;
         this.name = name;
         this.continent = continent;
@@ -37,7 +37,7 @@ public class Country {
         this.GNP = GNP;
         this.GNPOld = GNPOld;
         this.localName = localName;
-        this.govermentForm = govermentForm;
+        this.governmentForm = governmentForm;
         this.headOfState = headOfState;
         this.capital = capital;
         this.code2 = code2;
@@ -131,12 +131,12 @@ public class Country {
         this.localName = localName;
     }
 
-    public String getGovermentForm() {
-        return govermentForm;
+    public String getGovernmentForm() {
+        return governmentForm;
     }
 
-    public void setGovermentForm(String govermentForm) {
-        this.govermentForm = govermentForm;
+    public void setGovernmentForm(String governmentForm) {
+        this.governmentForm = governmentForm;
     }
 
     public String getHeadOfState() {
@@ -165,7 +165,7 @@ public class Country {
 
     @Override
     public String toString() {
-        return "Country{" + "code=" + code + ", name=" + name + ", continent=" + continent + ", region=" + region + ", surfaceArea=" + surfaceArea + ", indepYear=" + indepYear + ", population=" + population + ", lifeExpectancy=" + lifeExpectancy + ", GNP=" + GNP + ", GNPOld=" + GNPOld + ", localName=" + localName + ", govermentForm=" + govermentForm + ", headOfState=" + headOfState + ", capital=" + capital + ", code2=" + code2 + '}';
+        return "Country{" + "code=" + code + ", name=" + name + ", continent=" + continent + ", region=" + region + ", surfaceArea=" + surfaceArea + ", indepYear=" + indepYear + ", population=" + population + ", lifeExpectancy=" + lifeExpectancy + ", GNP=" + GNP + ", GNPOld=" + GNPOld + ", localName=" + localName + ", governmentForm=" + governmentForm + ", headOfState=" + headOfState + ", capital=" + capital + ", code2=" + code2 + '}';
     }
     
     
