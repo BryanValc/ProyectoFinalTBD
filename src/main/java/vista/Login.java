@@ -7,6 +7,7 @@ package vista;
 import conexionBD.ConexionBD;
 import controlador.UsuarioDAO;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Usuario;
@@ -17,6 +18,8 @@ import javax.swing.*;
  * @author bryan
  */
 public class Login extends javax.swing.JFrame {
+    
+    UsuarioDAO usuarioDAO = new UsuarioDAO();
     
     /**
      * Creates new form Login
@@ -113,6 +116,20 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
+    public boolean verificar() {
+        try {
+            ArrayList<Usuario> listaUsuarios = usuarioDAO.buscar("SELECT * FROM Usuario WHERE username = '"+jTextField1.getText()+"'");
+            if (listaUsuarios.size()!=0) {
+                Usuario usuario = listaUsuarios.get(0);
+                return usuario.getContraseña().equals(jPasswordField1.getText());
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        return false;
+		
+    }
+    
     /**
      * @param args the command line arguments
      */
