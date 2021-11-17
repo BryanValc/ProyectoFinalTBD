@@ -26,6 +26,7 @@ public class Login extends javax.swing.JFrame {
     JButton ingresar = new JButton("Ingresar");
     static ImageIcon image;
     JLabel label;
+    
 
     /**
      * Creates new form Login
