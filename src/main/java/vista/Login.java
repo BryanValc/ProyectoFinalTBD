@@ -8,6 +8,7 @@ import conexionBD.ConexionBD;
 import controlador.UsuarioDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -51,11 +52,13 @@ public class Login extends javax.swing.JFrame {
         setTitle("Inicio de sesión");
         setBackground(new java.awt.Color(255, 153, 0));
         setForeground(new java.awt.Color(255, 102, 0));
+        setResizable(false);
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\bryan\\OneDrive\\one drive\\Documentos\\NetBeansProjects\\ProyectoFinalTBD\\archivos\\usuario.png")); // NOI18N
         jLabel1.setText("jLabel1");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(68, 93, 106));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Usuario");
 
@@ -67,6 +70,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(68, 93, 106));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Contraseña");
 
@@ -76,8 +80,17 @@ public class Login extends javax.swing.JFrame {
                 jPasswordField1ActionPerformed(evt);
             }
         });
+        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jPasswordField1KeyReleased(evt);
+            }
+        });
 
+        jButton1.setBackground(new java.awt.Color(68, 93, 106));
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Ingresar");
+        jButton1.setToolTipText("Presionar para ingresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -96,11 +109,9 @@ public class Login extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextField1)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
-                            .addComponent(jPasswordField1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(jButton1)))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPasswordField1)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -116,8 +127,8 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -136,6 +147,7 @@ public class Login extends javax.swing.JFrame {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
+                                    
 					new Interfaz().setVisible(true);
 				}
 			});
@@ -144,6 +156,23 @@ public class Login extends javax.swing.JFrame {
 			JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
 		}
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jPasswordField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyReleased
+        if(evt.getKeyChar()==KeyEvent.VK_ENTER){
+            if (verificar()) {
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+                                    
+					new Interfaz().setVisible(true);
+				}
+			});
+			setVisible(false);
+		}else {
+			JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
+		}
+        }
+    }//GEN-LAST:event_jPasswordField1KeyReleased
 
     public boolean verificar() {
         try {
