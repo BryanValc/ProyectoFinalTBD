@@ -49,6 +49,11 @@ public class Interfaz extends javax.swing.JFrame {
         jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\bryan\\OneDrive\\one drive\\Documentos\\NetBeansProjects\\ProyectoFinalTBD\\archivos\\city.png")); // NOI18N
         jButton3.setToolTipText("Manejar ciudades");
         jButton3.setPreferredSize(new java.awt.Dimension(128, 128));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(255, 102, 102));
         jButton4.setForeground(new java.awt.Color(255, 102, 102));
@@ -95,6 +100,14 @@ public class Interfaz extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new guiCity().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
