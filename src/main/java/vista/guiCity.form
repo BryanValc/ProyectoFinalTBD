@@ -26,19 +26,17 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="ffPopulation" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="jFormattedTextField5" min="-2" pref="100" max="-2" attributes="0"/>
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="ffDistrict" max="32767" attributes="0"/>
+                      <Component id="jFormattedTextField4" max="32767" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <Component id="ffId" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                      <Component id="ffName" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="ffCountryCode" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="jFormattedTextField1" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="jFormattedTextField2" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
+                      <Component id="jFormattedTextField3" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="353" max="32767" attributes="0"/>
@@ -51,23 +49,23 @@
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="ffId" min="-2" max="-2" attributes="0"/>
+              <Component id="jFormattedTextField1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="ffName" min="-2" max="-2" attributes="0"/>
+              <Component id="jFormattedTextField2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="ffCountryCode" min="-2" max="-2" attributes="0"/>
+              <Component id="jFormattedTextField3" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="ffDistrict" min="-2" max="-2" attributes="0"/>
+              <Component id="jFormattedTextField4" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="ffPopulation" min="-2" max="-2" attributes="0"/>
+              <Component id="jFormattedTextField5" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="66" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -79,7 +77,7 @@
         <Property name="text" type="java.lang.String" value="ID ciudad"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="ffId">
+    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
           <Format format="#########" subtype="-1" type="5"/>
@@ -90,7 +88,7 @@
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="ffId"/>
       </AccessibilityProperties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ffIdActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFormattedTextField1ActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -98,7 +96,7 @@
         <Property name="text" type="java.lang.String" value="Nombre"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="ffName">
+    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField2">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
           <Format format="???????????????????????????????????" subtype="-1" type="5"/>
@@ -106,7 +104,7 @@
         <Property name="toolTipText" type="java.lang.String" value="Introduce el nombre de la ciudad"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ffNameActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFormattedTextField2ActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -114,7 +112,7 @@
         <Property name="text" type="java.lang.String" value="C&#xf3;digo de pa&#xed;s"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="ffCountryCode">
+    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField3">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
           <Format format="AAA" subtype="-1" type="5"/>
@@ -122,7 +120,7 @@
         <Property name="toolTipText" type="java.lang.String" value="Introduce el c&#xf3;digo del pa&#xed;s"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ffCountryCodeActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFormattedTextField3ActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -130,7 +128,7 @@
         <Property name="text" type="java.lang.String" value="Distrito"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="ffDistrict">
+    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField4">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
           <Format format="????????????????????" subtype="-1" type="5"/>
@@ -138,7 +136,7 @@
         <Property name="toolTipText" type="java.lang.String" value="Introduce el distrito en el que se encuentra"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ffDistrictActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFormattedTextField4ActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
@@ -146,7 +144,7 @@
         <Property name="text" type="java.lang.String" value="Poblaci&#xf3;n"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="ffPopulation">
+    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField5">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
           <Format format="#########" subtype="-1" type="5"/>
@@ -154,7 +152,7 @@
         <Property name="toolTipText" type="java.lang.String" value="Introduce la cantidad de la poblaci&#xf3;n"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ffPopulationActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFormattedTextField5ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

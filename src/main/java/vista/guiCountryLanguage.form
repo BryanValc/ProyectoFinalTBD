@@ -26,21 +26,21 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="cbIsOfficial" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" pref="97" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jLabel1" max="32767" attributes="0"/>
-                          <Component id="ffCountryCode" max="32767" attributes="0"/>
+                          <Component id="jFormattedTextField1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="ffLanguage" max="32767" attributes="0"/>
+                          <Component id="jFormattedTextField2" max="32767" attributes="0"/>
                           <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="ffPercentage" min="-2" pref="52" max="-2" attributes="0"/>
+                  <Component id="jFormattedTextField3" min="-2" pref="52" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="185" max="32767" attributes="0"/>
           </Group>
@@ -54,22 +54,22 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="ffCountryCode" min="-2" max="-2" attributes="0"/>
+                      <Component id="jFormattedTextField1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="ffLanguage" min="-2" max="-2" attributes="0"/>
+                      <Component id="jFormattedTextField2" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="cbIsOfficial" min="-2" max="-2" attributes="0"/>
+              <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="ffPercentage" min="-2" max="-2" attributes="0"/>
+              <Component id="jFormattedTextField3" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="120" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -81,7 +81,7 @@
         <Property name="text" type="java.lang.String" value="C&#xf3;digo de pa&#xed;s"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="ffCountryCode">
+    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
           <Format format="AAA" subtype="-1" type="5"/>
@@ -94,7 +94,7 @@
         <Property name="text" type="java.lang.String" value="Lenguaje"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="ffLanguage">
+    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField2">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
           <Format format="??????????????????????????????" subtype="-1" type="5"/>
@@ -107,7 +107,7 @@
         <Property name="text" type="java.lang.String" value="&#xbf;Es oficial?"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cbIsOfficial">
+    <Component class="javax.swing.JComboBox" name="jComboBox1">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="2">
@@ -118,7 +118,7 @@
         <Property name="toolTipText" type="java.lang.String" value="Selecciona si es oficial o no el lenguaje"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbIsOfficialActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox1ActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -129,7 +129,7 @@
         <Property name="text" type="java.lang.String" value="Porcentaje"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="ffPercentage">
+    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField3">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
           <Format format="####.#" subtype="-1" type="5"/>
@@ -137,7 +137,7 @@
         <Property name="toolTipText" type="java.lang.String" value="Introduce el porcentaje de habitantes que hablan el idioma"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ffPercentageActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFormattedTextField3ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -27,85 +27,85 @@ public class guiCity extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        ffId = new javax.swing.JFormattedTextField();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
-        ffName = new javax.swing.JFormattedTextField();
+        jFormattedTextField2 = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
-        ffCountryCode = new javax.swing.JFormattedTextField();
+        jFormattedTextField3 = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
-        ffDistrict = new javax.swing.JFormattedTextField();
+        jFormattedTextField4 = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
-        ffPopulation = new javax.swing.JFormattedTextField();
+        jFormattedTextField5 = new javax.swing.JFormattedTextField();
 
         setTitle("Formulario ciudad");
 
         jLabel1.setText("ID ciudad");
 
         try {
-            ffId.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########")));
+            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        ffId.setToolTipText("Introduce el ID de la ciudad");
-        ffId.addActionListener(new java.awt.event.ActionListener() {
+        jFormattedTextField1.setToolTipText("Introduce el ID de la ciudad");
+        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ffIdActionPerformed(evt);
+                jFormattedTextField1ActionPerformed(evt);
             }
         });
 
         jLabel2.setText("Nombre");
 
         try {
-            ffName.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("???????????????????????????????????")));
+            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("???????????????????????????????????")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        ffName.setToolTipText("Introduce el nombre de la ciudad");
-        ffName.addActionListener(new java.awt.event.ActionListener() {
+        jFormattedTextField2.setToolTipText("Introduce el nombre de la ciudad");
+        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ffNameActionPerformed(evt);
+                jFormattedTextField2ActionPerformed(evt);
             }
         });
 
         jLabel3.setText("Código de país");
 
         try {
-            ffCountryCode.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("AAA")));
+            jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("AAA")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        ffCountryCode.setToolTipText("Introduce el código del país");
-        ffCountryCode.addActionListener(new java.awt.event.ActionListener() {
+        jFormattedTextField3.setToolTipText("Introduce el código del país");
+        jFormattedTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ffCountryCodeActionPerformed(evt);
+                jFormattedTextField3ActionPerformed(evt);
             }
         });
 
         jLabel4.setText("Distrito");
 
         try {
-            ffDistrict.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("????????????????????")));
+            jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("????????????????????")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        ffDistrict.setToolTipText("Introduce el distrito en el que se encuentra");
-        ffDistrict.addActionListener(new java.awt.event.ActionListener() {
+        jFormattedTextField4.setToolTipText("Introduce el distrito en el que se encuentra");
+        jFormattedTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ffDistrictActionPerformed(evt);
+                jFormattedTextField4ActionPerformed(evt);
             }
         });
 
         jLabel5.setText("Población");
 
         try {
-            ffPopulation.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########")));
+            jFormattedTextField5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        ffPopulation.setToolTipText("Introduce la cantidad de la población");
-        ffPopulation.addActionListener(new java.awt.event.ActionListener() {
+        jFormattedTextField5.setToolTipText("Introduce la cantidad de la población");
+        jFormattedTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ffPopulationActionPerformed(evt);
+                jFormattedTextField5ActionPerformed(evt);
             }
         });
 
@@ -116,18 +116,17 @@ public class guiCity extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ffPopulation, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(ffDistrict)
+                        .addComponent(jFormattedTextField4)
                         .addComponent(jLabel4)
                         .addComponent(jLabel2)
                         .addComponent(jLabel1)
-                        .addComponent(ffId, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(ffName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(ffCountryCode, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jFormattedTextField3)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(353, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -136,50 +135,50 @@ public class guiCity extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ffId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ffName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ffCountryCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ffDistrict, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ffPopulation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
-        ffId.getAccessibleContext().setAccessibleName("ffId");
+        jFormattedTextField1.getAccessibleContext().setAccessibleName("ffId");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ffIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ffIdActionPerformed
+    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ffIdActionPerformed
+    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
 
-    private void ffNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ffNameActionPerformed
+    private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ffNameActionPerformed
+    }//GEN-LAST:event_jFormattedTextField2ActionPerformed
 
-    private void ffCountryCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ffCountryCodeActionPerformed
+    private void jFormattedTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ffCountryCodeActionPerformed
+    }//GEN-LAST:event_jFormattedTextField3ActionPerformed
 
-    private void ffDistrictActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ffDistrictActionPerformed
+    private void jFormattedTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ffDistrictActionPerformed
+    }//GEN-LAST:event_jFormattedTextField4ActionPerformed
 
-    private void ffPopulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ffPopulationActionPerformed
+    private void jFormattedTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ffPopulationActionPerformed
+    }//GEN-LAST:event_jFormattedTextField5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,11 +212,11 @@ public class guiCity extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFormattedTextField ffCountryCode;
-    private javax.swing.JFormattedTextField ffDistrict;
-    private javax.swing.JFormattedTextField ffId;
-    private javax.swing.JFormattedTextField ffName;
-    private javax.swing.JFormattedTextField ffPopulation;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField jFormattedTextField2;
+    private javax.swing.JFormattedTextField jFormattedTextField3;
+    private javax.swing.JFormattedTextField jFormattedTextField4;
+    private javax.swing.JFormattedTextField jFormattedTextField5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
