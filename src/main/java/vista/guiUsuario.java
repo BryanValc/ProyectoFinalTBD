@@ -4,6 +4,12 @@
  */
 package vista;
 
+import java.awt.Rectangle;
+import java.sql.SQLException;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ScrollPaneConstants;
+
 /**
  *
  * @author bryan
@@ -15,6 +21,7 @@ public class guiUsuario extends javax.swing.JFrame {
      */
     public guiUsuario() {
         initComponents();
+        actualizarTabla("SELECT * FROM Usuario;");
     }
 
     /**
@@ -26,14 +33,28 @@ public class guiUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
         jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setTitle("Formulario usuario");
+        setMinimumSize(new java.awt.Dimension(331, 252));
+        getContentPane().setLayout(null);
 
+        jScrollPane1.setDoubleBuffered(true);
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(10, 120, 271, 121);
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Usuario");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(10, 11, 70, 14);
 
         try {
             jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("********************")));
@@ -41,8 +62,13 @@ public class guiUsuario extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         jFormattedTextField1.setToolTipText("Introduce el nombre de usuario");
+        getContentPane().add(jFormattedTextField1);
+        jFormattedTextField1.setBounds(10, 31, 95, 25);
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Contraseña");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(10, 57, 90, 14);
 
         try {
             jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("********************")));
@@ -50,33 +76,12 @@ public class guiUsuario extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         jFormattedTextField2.setToolTipText("Introduce la contraseña del usuario");
+        getContentPane().add(jFormattedTextField2);
+        jFormattedTextField2.setBounds(10, 77, 95, 25);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                    .addComponent(jFormattedTextField1))
-                .addContainerGap(295, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(203, Short.MAX_VALUE))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\bryan\\OneDrive\\one drive\\Documentos\\NetBeansProjects\\ProyectoFinalTBD\\archivos\\guiUsuario.png")); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(0, 0, 330, 250);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -84,6 +89,40 @@ public class guiUsuario extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
+    
+    public void actualizarTabla(String sql) {
+		ResultSetTableModel modeloDatos =null;
+		try {
+			modeloDatos = new ResultSetTableModel("com.mysql.cj.jdbc.Driver","jdbc:mysql://localhost:3306/world",sql);
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+                Rectangle ubicacion = jScrollPane1.getBounds();
+		this.remove(jScrollPane1);
+		jTable1 = new JTable(modeloDatos);
+		jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+		    @Override
+		    public void mouseClicked(java.awt.event.MouseEvent evt) {
+		    	obtenerRegistroTabla();
+		    }
+		});
+		jScrollPane1 = new JScrollPane(jTable1);
+		jScrollPane1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		jScrollPane1.setBounds(ubicacion);
+		this.add(jScrollPane1);
+		this.setVisible(true);
+	}
+    
+    public void obtenerRegistroTabla(){
+	jFormattedTextField1.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),0));
+	jFormattedTextField2.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),1));
+
+    }
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -121,5 +160,8 @@ public class guiUsuario extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
