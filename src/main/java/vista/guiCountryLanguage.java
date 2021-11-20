@@ -43,7 +43,7 @@ public class guiCountryLanguage extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Código de país");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 20, 80, 14);
+        jLabel1.setBounds(30, 20, 110, 14);
 
         try {
             jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("AAA")));
