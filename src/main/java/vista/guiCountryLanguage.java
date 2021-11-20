@@ -27,13 +27,13 @@ public class guiCountryLanguage extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        caja1 = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        caja2 = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
+        caja3 = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
 
         setTitle("Formulario lenguaje de país");
@@ -46,27 +46,22 @@ public class guiCountryLanguage extends javax.swing.JFrame {
         jLabel1.setBounds(30, 20, 110, 14);
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("AAA")));
+            caja1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UUU")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField1.setToolTipText("Introduce el código del país");
-        getContentPane().add(jFormattedTextField1);
-        jFormattedTextField1.setBounds(30, 50, 90, 25);
+        caja1.setToolTipText("Introduce el código del país");
+        getContentPane().add(caja1);
+        caja1.setBounds(30, 50, 90, 25);
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Lenguaje");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(150, 20, 97, 14);
-
-        try {
-            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("??????????????????????????????")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextField2.setToolTipText("Introduce el nombre del lenguaje");
-        getContentPane().add(jFormattedTextField2);
-        jFormattedTextField2.setBounds(150, 50, 110, 25);
+		
+        caja2.setToolTipText("Introduce el nombre del lenguaje");
+        getContentPane().add(caja2);
+        caja2.setBounds(150, 50, 110, 25);
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("¿Es oficial?");
@@ -88,19 +83,14 @@ public class guiCountryLanguage extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(30, 135, 90, 14);
 
-        try {
-            jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####.#")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextField3.setToolTipText("Introduce el porcentaje de habitantes que hablan el idioma");
-        jFormattedTextField3.addActionListener(new java.awt.event.ActionListener() {
+        caja3.setToolTipText("Introduce el porcentaje de habitantes que hablan el idioma");
+        caja3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField3ActionPerformed(evt);
+                caja3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jFormattedTextField3);
-        jFormattedTextField3.setBounds(30, 160, 70, 25);
+        getContentPane().add(caja3);
+        caja3.setBounds(30, 160, 70, 25);
 
         jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\bryan\\OneDrive\\one drive\\Documentos\\NetBeansProjects\\ProyectoFinalTBD\\archivos\\guiLanguage.png")); // NOI18N
         getContentPane().add(jLabel5);
@@ -113,9 +103,9 @@ public class guiCountryLanguage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void jFormattedTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField3ActionPerformed
+    private void caja3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField3ActionPerformed
+    }//GEN-LAST:event_caja3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,10 +143,10 @@ public class guiCountryLanguage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFormattedTextField caja1;
+    private javax.swing.JFormattedTextField caja2;
+    private javax.swing.JFormattedTextField caja3;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

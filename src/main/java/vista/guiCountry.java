@@ -4,6 +4,9 @@
  */
 package vista;
 
+import java.awt.event.KeyEvent;
+import javax.swing.JFormattedTextField;
+
 /**
  *
  * @author bryan
@@ -27,34 +30,34 @@ public class guiCountry extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        caja1 = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        caja2 = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        combo1 = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
+        caja3 = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
-        jFormattedTextField4 = new javax.swing.JFormattedTextField();
-        jFormattedTextField5 = new javax.swing.JFormattedTextField();
+        caja4 = new javax.swing.JFormattedTextField();
+        caja5 = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
-        jFormattedTextField6 = new javax.swing.JFormattedTextField();
+        caja6 = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
-        jFormattedTextField7 = new javax.swing.JFormattedTextField();
+        caja7 = new javax.swing.JFormattedTextField();
         jLabel8 = new javax.swing.JLabel();
-        jFormattedTextField8 = new javax.swing.JFormattedTextField();
+        caja8 = new javax.swing.JFormattedTextField();
         jLabel9 = new javax.swing.JLabel();
-        jFormattedTextField9 = new javax.swing.JFormattedTextField();
+        caja9 = new javax.swing.JFormattedTextField();
         jLabel10 = new javax.swing.JLabel();
-        jFormattedTextField10 = new javax.swing.JFormattedTextField();
+        caja10 = new javax.swing.JFormattedTextField();
         jLabel11 = new javax.swing.JLabel();
-        jFormattedTextField11 = new javax.swing.JFormattedTextField();
+        caja11 = new javax.swing.JFormattedTextField();
         jLabel12 = new javax.swing.JLabel();
-        jFormattedTextField12 = new javax.swing.JFormattedTextField();
+        caja12 = new javax.swing.JFormattedTextField();
         jLabel13 = new javax.swing.JLabel();
-        jFormattedTextField13 = new javax.swing.JFormattedTextField();
+        caja13 = new javax.swing.JFormattedTextField();
         jLabel14 = new javax.swing.JLabel();
-        jFormattedTextField14 = new javax.swing.JFormattedTextField();
+        caja14 = new javax.swing.JFormattedTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
 
@@ -68,48 +71,48 @@ public class guiCountry extends javax.swing.JFrame {
         jLabel1.setBounds(10, 10, 50, 14);
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UUU")));
+            caja1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UUU")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField1.setToolTipText("Introduce el código del país");
-        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
+        caja1.setToolTipText("Introduce el código del país");
+        caja1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField1ActionPerformed(evt);
+                caja1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jFormattedTextField1);
-        jFormattedTextField1.setBounds(60, 10, 50, 25);
+        getContentPane().add(caja1);
+        caja1.setBounds(60, 10, 50, 25);
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(10, 40, 80, 14);
 
-        try {
-            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("****************************************************")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextField2.setToolTipText("Introduce el nombre de la ciudad");
-        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
+        caja2.setToolTipText("Introduce el nombre de la ciudad");
+        caja2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField2ActionPerformed(evt);
+                caja2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jFormattedTextField2);
-        jFormattedTextField2.setBounds(110, 40, 170, 25);
+        caja2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                caja2KeyPressed(evt);
+            }
+        });
+        getContentPane().add(caja2);
+        caja2.setBounds(110, 40, 170, 25);
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Continente");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(480, 10, 80, 14);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Asia", "Europe", "North America", "Africa", "Oceania", "Antarctica", "South America" }));
-        jComboBox1.setSelectedIndex(-1);
-        jComboBox1.setToolTipText("Selecciona el continente");
-        getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(600, 10, 101, 25);
+        combo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Asia", "Europe", "North America", "Africa", "Oceania", "Antarctica", "South America" }));
+        combo1.setSelectedIndex(-1);
+        combo1.setToolTipText("Selecciona el continente");
+        getContentPane().add(combo1);
+        combo1.setBounds(600, 10, 150, 25);
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Región");
@@ -117,51 +120,59 @@ public class guiCountry extends javax.swing.JFrame {
         jLabel4.setBounds(480, 40, 80, 14);
 
         try {
-            jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("**************************")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField3.setToolTipText("Introduce la región en la que se encuentra el país");
-        jFormattedTextField3.addActionListener(new java.awt.event.ActionListener() {
+        caja3.setToolTipText("Introduce la región en la que se encuentra el país");
+        caja3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField3ActionPerformed(evt);
+                caja3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jFormattedTextField3);
-        jFormattedTextField3.setBounds(600, 40, 101, 25);
+        caja3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                caja3KeyPressed(evt);
+            }
+        });
+        getContentPane().add(caja3);
+        caja3.setBounds(600, 40, 101, 25);
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Área de la superficie");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(480, 70, 120, 14);
 
-        try {
-            jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##########.##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextField4.setToolTipText("Introduce el área de la superficie");
-        jFormattedTextField4.addActionListener(new java.awt.event.ActionListener() {
+        caja4.setToolTipText("Introduce el área de la superficie");
+        caja4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField4ActionPerformed(evt);
+                caja4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jFormattedTextField4);
-        jFormattedTextField4.setBounds(600, 70, 101, 25);
+        caja4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                caja4KeyPressed(evt);
+            }
+        });
+        getContentPane().add(caja4);
+        caja4.setBounds(600, 70, 101, 25);
 
         try {
-            jFormattedTextField5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField5.setToolTipText("Introduce el año de independencia");
-        jFormattedTextField5.addActionListener(new java.awt.event.ActionListener() {
+        caja5.setToolTipText("Introduce el año de independencia");
+        caja5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField5ActionPerformed(evt);
+                caja5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jFormattedTextField5);
-        jFormattedTextField5.setBounds(570, 240, 60, 25);
+        caja5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                caja5KeyPressed(evt);
+            }
+        });
+        getContentPane().add(caja5);
+        caja5.setBounds(570, 240, 60, 25);
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Año de independencia");
@@ -169,38 +180,41 @@ public class guiCountry extends javax.swing.JFrame {
         jLabel6.setBounds(420, 240, 150, 14);
 
         try {
-            jFormattedTextField6.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField6.setToolTipText("Introduce la cantidad de la población");
-        jFormattedTextField6.addActionListener(new java.awt.event.ActionListener() {
+        caja6.setToolTipText("Introduce la cantidad de la población");
+        caja6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField6ActionPerformed(evt);
+                caja6ActionPerformed(evt);
             }
         });
-        getContentPane().add(jFormattedTextField6);
-        jFormattedTextField6.setBounds(230, 170, 130, 25);
+        caja6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                caja6KeyPressed(evt);
+            }
+        });
+        getContentPane().add(caja6);
+        caja6.setBounds(230, 170, 130, 25);
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Población");
         getContentPane().add(jLabel7);
         jLabel7.setBounds(10, 170, 100, 14);
 
-        try {
-            jFormattedTextField7.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.#")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextField7.setText("");
-        jFormattedTextField7.setToolTipText("Introduce la esperanza de vida de los habitantes");
-        jFormattedTextField7.addActionListener(new java.awt.event.ActionListener() {
+        caja7.setToolTipText("Introduce la esperanza de vida de los habitantes");
+        caja7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField7ActionPerformed(evt);
+                caja7ActionPerformed(evt);
             }
         });
-        getContentPane().add(jFormattedTextField7);
-        jFormattedTextField7.setBounds(230, 200, 60, 25);
+        caja7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                caja7KeyPressed(evt);
+            }
+        });
+        getContentPane().add(caja7);
+        caja7.setBounds(230, 200, 60, 25);
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Produco nacional bruto");
@@ -208,18 +222,22 @@ public class guiCountry extends javax.swing.JFrame {
         jLabel8.setBounds(10, 230, 170, 14);
 
         try {
-            jFormattedTextField8.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##########.##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField8.setToolTipText("Introduce el producto anual bruto");
-        jFormattedTextField8.addActionListener(new java.awt.event.ActionListener() {
+        caja8.setToolTipText("Introduce el producto anual bruto");
+        caja8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField8ActionPerformed(evt);
+                caja8ActionPerformed(evt);
             }
         });
-        getContentPane().add(jFormattedTextField8);
-        jFormattedTextField8.setBounds(230, 230, 130, 25);
+        caja8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                caja8KeyPressed(evt);
+            }
+        });
+        getContentPane().add(caja8);
+        caja8.setBounds(230, 230, 130, 25);
 
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Antiguo produco nacional bruto");
@@ -227,18 +245,22 @@ public class guiCountry extends javax.swing.JFrame {
         jLabel9.setBounds(10, 260, 220, 14);
 
         try {
-            jFormattedTextField9.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##########.##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField9.setToolTipText("Introduce el producto bruto anual anterior");
-        jFormattedTextField9.addActionListener(new java.awt.event.ActionListener() {
+        caja9.setToolTipText("Introduce el producto bruto anual anterior");
+        caja9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField9ActionPerformed(evt);
+                caja9ActionPerformed(evt);
             }
         });
-        getContentPane().add(jFormattedTextField9);
-        jFormattedTextField9.setBounds(230, 260, 130, 25);
+        caja9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                caja9KeyPressed(evt);
+            }
+        });
+        getContentPane().add(caja9);
+        caja9.setBounds(230, 260, 130, 25);
 
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Nombre local");
@@ -246,18 +268,22 @@ public class guiCountry extends javax.swing.JFrame {
         jLabel10.setBounds(10, 70, 100, 14);
 
         try {
-            jFormattedTextField10.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("*********************************************")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField10.setToolTipText("Introduce el nombre local");
-        jFormattedTextField10.addActionListener(new java.awt.event.ActionListener() {
+        caja10.setToolTipText("Introduce el nombre local");
+        caja10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField10ActionPerformed(evt);
+                caja10ActionPerformed(evt);
             }
         });
-        getContentPane().add(jFormattedTextField10);
-        jFormattedTextField10.setBounds(110, 70, 170, 25);
+        caja10.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                caja10KeyPressed(evt);
+            }
+        });
+        getContentPane().add(caja10);
+        caja10.setBounds(110, 70, 170, 25);
 
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Forma de gobierno");
@@ -265,33 +291,41 @@ public class guiCountry extends javax.swing.JFrame {
         jLabel11.setBounds(420, 150, 140, 14);
 
         try {
-            jFormattedTextField11.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("*********************************************")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField11.setToolTipText("Introduce la forma de gobierno");
-        jFormattedTextField11.addActionListener(new java.awt.event.ActionListener() {
+        caja11.setToolTipText("Introduce la forma de gobierno");
+        caja11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField11ActionPerformed(evt);
+                caja11ActionPerformed(evt);
             }
         });
-        getContentPane().add(jFormattedTextField11);
-        jFormattedTextField11.setBounds(570, 150, 200, 25);
+        caja11.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                caja11KeyPressed(evt);
+            }
+        });
+        getContentPane().add(caja11);
+        caja11.setBounds(570, 150, 200, 25);
 
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Cabeza de estado");
         getContentPane().add(jLabel12);
         jLabel12.setBounds(420, 180, 150, 14);
 
-        jFormattedTextField12.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("************************************************************"))));
-        jFormattedTextField12.setToolTipText("Introduce el nombre de la cabeza de estado");
-        jFormattedTextField12.addActionListener(new java.awt.event.ActionListener() {
+        caja12.setToolTipText("Introduce el nombre de la cabeza de estado");
+        caja12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField12ActionPerformed(evt);
+                caja12ActionPerformed(evt);
             }
         });
-        getContentPane().add(jFormattedTextField12);
-        jFormattedTextField12.setBounds(570, 180, 240, 25);
+        caja12.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                caja12KeyPressed(evt);
+            }
+        });
+        getContentPane().add(caja12);
+        caja12.setBounds(570, 180, 240, 25);
 
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Capital");
@@ -299,18 +333,22 @@ public class guiCountry extends javax.swing.JFrame {
         jLabel13.setBounds(420, 210, 150, 14);
 
         try {
-            jFormattedTextField13.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField13.setToolTipText("Introduce el nombre de la capìtal");
-        jFormattedTextField13.addActionListener(new java.awt.event.ActionListener() {
+        caja13.setToolTipText("Introduce el nombre de la capìtal");
+        caja13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField13ActionPerformed(evt);
+                caja13ActionPerformed(evt);
             }
         });
-        getContentPane().add(jFormattedTextField13);
-        jFormattedTextField13.setBounds(570, 210, 170, 25);
+        caja13.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                caja13KeyPressed(evt);
+            }
+        });
+        getContentPane().add(caja13);
+        caja13.setBounds(570, 210, 170, 25);
 
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Código secundario");
@@ -318,18 +356,18 @@ public class guiCountry extends javax.swing.JFrame {
         jLabel14.setBounds(120, 10, 110, 14);
 
         try {
-            jFormattedTextField14.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UU")));
+            caja14.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UU")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField14.setToolTipText("Introduce el código secundario");
-        jFormattedTextField14.addActionListener(new java.awt.event.ActionListener() {
+        caja14.setToolTipText("Introduce el código secundario");
+        caja14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField14ActionPerformed(evt);
+                caja14ActionPerformed(evt);
             }
         });
-        getContentPane().add(jFormattedTextField14);
-        jFormattedTextField14.setBounds(230, 10, 50, 25);
+        getContentPane().add(caja14);
+        caja14.setBounds(230, 10, 50, 25);
 
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Esperanza de vida");
@@ -343,61 +381,218 @@ public class guiCountry extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
+    private void caja1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
+    }//GEN-LAST:event_caja1ActionPerformed
 
-    private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
+    private void caja2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField2ActionPerformed
+    }//GEN-LAST:event_caja2ActionPerformed
 
-    private void jFormattedTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField3ActionPerformed
+    private void caja3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField3ActionPerformed
+    }//GEN-LAST:event_caja3ActionPerformed
 
-    private void jFormattedTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField4ActionPerformed
+    private void caja4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField4ActionPerformed
+    }//GEN-LAST:event_caja4ActionPerformed
 
-    private void jFormattedTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField5ActionPerformed
+    private void caja5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField5ActionPerformed
+    }//GEN-LAST:event_caja5ActionPerformed
 
-    private void jFormattedTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField6ActionPerformed
+    private void caja6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja6ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField6ActionPerformed
+    }//GEN-LAST:event_caja6ActionPerformed
 
-    private void jFormattedTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField7ActionPerformed
+    private void caja7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja7ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField7ActionPerformed
+    }//GEN-LAST:event_caja7ActionPerformed
 
-    private void jFormattedTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField8ActionPerformed
+    private void caja8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja8ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField8ActionPerformed
+    }//GEN-LAST:event_caja8ActionPerformed
 
-    private void jFormattedTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField9ActionPerformed
+    private void caja9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja9ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField9ActionPerformed
+    }//GEN-LAST:event_caja9ActionPerformed
 
-    private void jFormattedTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField10ActionPerformed
+    private void caja10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja10ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField10ActionPerformed
+    }//GEN-LAST:event_caja10ActionPerformed
 
-    private void jFormattedTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField11ActionPerformed
+    private void caja11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja11ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField11ActionPerformed
+    }//GEN-LAST:event_caja11ActionPerformed
 
-    private void jFormattedTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField12ActionPerformed
+    private void caja12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja12ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField12ActionPerformed
+    }//GEN-LAST:event_caja12ActionPerformed
 
-    private void jFormattedTextField13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField13ActionPerformed
+    private void caja13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja13ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField13ActionPerformed
+    }//GEN-LAST:event_caja13ActionPerformed
 
-    private void jFormattedTextField14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField14ActionPerformed
+    private void caja14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja14ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField14ActionPerformed
+    }//GEN-LAST:event_caja14ActionPerformed
+
+    private void caja2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja2KeyPressed
+        int code = evt.getKeyCode();
+        int limite = 52;
+        if ((caja2.getText().equals("")?true:!(caja2.getText().charAt(caja2.getText().length()-1)==' '&&code==KeyEvent.VK_SPACE))&&(caja2.getText().length()<limite||code==KeyEvent.VK_BACK_SPACE)) {
+                caja2.setEditable(true);
+        }else{
+                caja2.setEditable(false);
+        }
+    }//GEN-LAST:event_caja2KeyPressed
+
+    private void caja3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja3KeyPressed
+        int code = evt.getKeyCode();
+        int limite = 26;
+        if ((caja3.getText().equals("")?true:!(caja3.getText().charAt(caja3.getText().length()-1)==' '&&code==KeyEvent.VK_SPACE))&&(caja3.getText().length()<limite||code==KeyEvent.VK_BACK_SPACE)) {
+                caja3.setEditable(true);
+        }else{
+                caja3.setEditable(false);
+        }
+    }//GEN-LAST:event_caja3KeyPressed
+    int peCaja4 = 0;
+    private void caja4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja4KeyPressed
+        int code=evt.getKeyCode();
+        int limite1 = 10;
+        int limite2 = 2;
+        JFormattedTextField caja = caja4;
+	if (((evt.getKeyChar() >= '0'&&evt.getKeyChar() <= '9')&&!caja.getText().contains("."))&&caja.getText().length()<(limite1)||(code==KeyEvent.VK_BACK_SPACE)) {
+            caja.setEditable(true);
+        }else if((caja.getText().length()<(limite1+1))&&(evt.getKeyChar() == '.'&&!caja.getText().contains("."))){
+            peCaja4 = caja.getText().length();
+            caja.setEditable(true);
+	}else if((evt.getKeyChar() >= '0'&&evt.getKeyChar() <= '9')&&(caja.getText().length()<(peCaja4+limite2+1))&&caja.getText().contains(".")){
+            caja.setEditable(true);
+        }else{
+            caja.setEditable(false);
+	}
+    }//GEN-LAST:event_caja4KeyPressed
+
+    private void caja5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja5KeyPressed
+        int code=evt.getKeyCode();
+	int limite=4;
+        JFormattedTextField caja = caja5;
+	if (((evt.getKeyChar() >= '0'&&evt.getKeyChar() <= '9'))&&caja.getText().length()<limite||(code==KeyEvent.VK_BACK_SPACE)) {
+		caja.setEditable(true);
+	}else{
+		caja.setEditable(false);
+	}
+    }//GEN-LAST:event_caja5KeyPressed
+
+    private void caja6KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja6KeyPressed
+        int code=evt.getKeyCode();
+	int limite=10;
+        JFormattedTextField caja = caja6;
+	if (((evt.getKeyChar() >= '0'&&evt.getKeyChar() <= '9'))&&caja.getText().length()<limite||(code==KeyEvent.VK_BACK_SPACE)) {
+		caja.setEditable(true);
+	}else{
+		caja.setEditable(false);
+	}
+    }//GEN-LAST:event_caja6KeyPressed
+
+    int peCaja7 = 0;
+    private void caja7KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja7KeyPressed
+        int code=evt.getKeyCode();
+        int limite1 = 3;
+        int limite2 = 1;
+        JFormattedTextField caja = caja7;
+	if (((evt.getKeyChar() >= '0'&&evt.getKeyChar() <= '9')&&!caja.getText().contains("."))&&caja.getText().length()<(limite1)||(code==KeyEvent.VK_BACK_SPACE)) {
+            caja.setEditable(true);
+        }else if((caja.getText().length()<(limite1+1))&&(evt.getKeyChar() == '.'&&!caja.getText().contains("."))){
+            peCaja7 = caja.getText().length();
+            caja.setEditable(true);
+	}else if((evt.getKeyChar() >= '0'&&evt.getKeyChar() <= '9')&&(caja.getText().length()<(peCaja7+limite2+1))&&caja.getText().contains(".")){
+            caja.setEditable(true);
+        }else{
+            caja.setEditable(false);
+	}
+    }//GEN-LAST:event_caja7KeyPressed
+
+    int peCaja8 = 0;
+    private void caja8KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja8KeyPressed
+        int code=evt.getKeyCode();
+        int limite1 = 10;
+        int limite2 = 2;
+        JFormattedTextField caja = caja8;
+	if (((evt.getKeyChar() >= '0'&&evt.getKeyChar() <= '9')&&!caja.getText().contains("."))&&caja.getText().length()<(limite1)||(code==KeyEvent.VK_BACK_SPACE)) {
+            caja.setEditable(true);
+        }else if((caja.getText().length()<(limite1+1))&&(evt.getKeyChar() == '.'&&!caja.getText().contains("."))){
+            peCaja8 = caja.getText().length();
+            caja.setEditable(true);
+	}else if((evt.getKeyChar() >= '0'&&evt.getKeyChar() <= '9')&&(caja.getText().length()<(peCaja8+limite2+1))&&caja.getText().contains(".")){
+            caja.setEditable(true);
+        }else{
+            caja.setEditable(false);
+	}
+    }//GEN-LAST:event_caja8KeyPressed
+
+    int peCaja9 = 0;
+    private void caja9KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja9KeyPressed
+        int code=evt.getKeyCode();
+        int limite1 = 10;
+        int limite2 = 2;
+        JFormattedTextField caja = caja9;
+	if (((evt.getKeyChar() >= '0'&&evt.getKeyChar() <= '9')&&!caja.getText().contains("."))&&caja.getText().length()<(limite1)||(code==KeyEvent.VK_BACK_SPACE)) {
+            caja.setEditable(true);
+        }else if((caja.getText().length()<(limite1+1))&&(evt.getKeyChar() == '.'&&!caja.getText().contains("."))){
+            peCaja9 = caja.getText().length();
+            caja.setEditable(true);
+	}else if((evt.getKeyChar() >= '0'&&evt.getKeyChar() <= '9')&&(caja.getText().length()<(peCaja9+limite2+1))&&caja.getText().contains(".")){
+            caja.setEditable(true);
+        }else{
+            caja.setEditable(false);
+	}
+    }//GEN-LAST:event_caja9KeyPressed
+
+    private void caja10KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja10KeyPressed
+        int code = evt.getKeyCode();
+	int limite = 45;
+        JFormattedTextField caja = caja10;
+	if ((caja.getText().equals("")?true:!(caja.getText().charAt(caja.getText().length()-1)==' '&&code==KeyEvent.VK_SPACE))&&(caja.getText().length()<limite||code==KeyEvent.VK_BACK_SPACE)) {
+		caja.setEditable(true);
+	}else{
+		caja.setEditable(false);
+	}
+    }//GEN-LAST:event_caja10KeyPressed
+
+    private void caja11KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja11KeyPressed
+        int code = evt.getKeyCode();
+	int limite = 45;
+        JFormattedTextField caja = caja11;
+	if ((caja.getText().equals("")?true:!(caja.getText().charAt(caja.getText().length()-1)==' '&&code==KeyEvent.VK_SPACE))&&(caja.getText().length()<limite||code==KeyEvent.VK_BACK_SPACE)) {
+		caja.setEditable(true);
+	}else{
+		caja.setEditable(false);
+	}
+    }//GEN-LAST:event_caja11KeyPressed
+
+    private void caja12KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja12KeyPressed
+        int code = evt.getKeyCode();
+	int limite = 60;
+        JFormattedTextField caja = caja12;
+	if ((caja.getText().equals("")?true:!(caja.getText().charAt(caja.getText().length()-1)==' '&&code==KeyEvent.VK_SPACE))&&(caja.getText().length()<limite||code==KeyEvent.VK_BACK_SPACE)) {
+		caja.setEditable(true);
+	}else{
+		caja.setEditable(false);
+	}
+    }//GEN-LAST:event_caja12KeyPressed
+
+    private void caja13KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja13KeyPressed
+        int code=evt.getKeyCode();
+	int limite=10;
+        JFormattedTextField caja = caja13;
+	if (((evt.getKeyChar() >= '0'&&evt.getKeyChar() <= '9'))&&caja.getText().length()<limite||(code==KeyEvent.VK_BACK_SPACE)) {
+		caja.setEditable(true);
+	}else{
+		caja.setEditable(false);
+	}
+    }//GEN-LAST:event_caja13KeyPressed
 
     /**
      * @param args the command line arguments
@@ -435,21 +630,21 @@ public class guiCountry extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField10;
-    private javax.swing.JFormattedTextField jFormattedTextField11;
-    private javax.swing.JFormattedTextField jFormattedTextField12;
-    private javax.swing.JFormattedTextField jFormattedTextField13;
-    private javax.swing.JFormattedTextField jFormattedTextField14;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
-    private javax.swing.JFormattedTextField jFormattedTextField4;
-    private javax.swing.JFormattedTextField jFormattedTextField5;
-    private javax.swing.JFormattedTextField jFormattedTextField6;
-    private javax.swing.JFormattedTextField jFormattedTextField7;
-    private javax.swing.JFormattedTextField jFormattedTextField8;
-    private javax.swing.JFormattedTextField jFormattedTextField9;
+    private javax.swing.JFormattedTextField caja1;
+    private javax.swing.JFormattedTextField caja10;
+    private javax.swing.JFormattedTextField caja11;
+    private javax.swing.JFormattedTextField caja12;
+    private javax.swing.JFormattedTextField caja13;
+    private javax.swing.JFormattedTextField caja14;
+    private javax.swing.JFormattedTextField caja2;
+    private javax.swing.JFormattedTextField caja3;
+    private javax.swing.JFormattedTextField caja4;
+    private javax.swing.JFormattedTextField caja5;
+    private javax.swing.JFormattedTextField caja6;
+    private javax.swing.JFormattedTextField caja7;
+    private javax.swing.JFormattedTextField caja8;
+    private javax.swing.JFormattedTextField caja9;
+    private javax.swing.JComboBox<String> combo1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

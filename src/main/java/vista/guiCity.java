@@ -33,7 +33,7 @@ public class guiCity extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
         caja1 = new javax.swing.JTextField();
         caja2 = new javax.swing.JTextField();
         caja4 = new javax.swing.JTextField();
@@ -65,15 +65,15 @@ public class guiCity extends javax.swing.JFrame {
         getContentPane().add(jLabel5);
         jLabel5.setBounds(20, 260, 80, 14);
 
-        jButton1.setText("Limpiar");
-        jButton1.setToolTipText("Borra todos los textos de los campos");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.setToolTipText("Borra todos los textos de los campos");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLimpiarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(443, 280, 100, 23);
+        getContentPane().add(btnLimpiar);
+        btnLimpiar.setBounds(443, 280, 100, 23);
 
         caja1.setToolTipText("Introduce el ID de la ciudad");
         caja1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -132,14 +132,14 @@ public class guiCity extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         caja1.setText("");
         caja2.setText("");
         caja3.setText("");
         caja4.setText("");
         caja5.setText("");
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void caja1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja1KeyPressed
        int code=evt.getKeyCode();
@@ -167,11 +167,11 @@ public class guiCity extends javax.swing.JFrame {
     private void caja4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja4KeyPressed
         int code = evt.getKeyCode();
         int limite = 20;
-        if ((caja3.getText().equals("")?true:!(caja3.getText().charAt(caja3.getText().length()-1)==' '&&code==KeyEvent.VK_SPACE))&&(caja3.getText().length()<limite||code==KeyEvent.VK_BACK_SPACE)) {
-                caja3.setEditable(true);
+        if ((caja4.getText().equals("")?true:!(caja4.getText().charAt(caja4.getText().length()-1)==' '&&code==KeyEvent.VK_SPACE))&&(caja4.getText().length()<limite||code==KeyEvent.VK_BACK_SPACE)) {
+                caja4.setEditable(true);
         }else{
-                caja3.setEditable(false);
-}
+                caja4.setEditable(false);
+        }
     }//GEN-LAST:event_caja4KeyPressed
 
     private void caja5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja5KeyPressed
@@ -216,12 +216,12 @@ public class guiCity extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JTextField caja1;
     private javax.swing.JTextField caja2;
     private javax.swing.JFormattedTextField caja3;
     private javax.swing.JTextField caja4;
     private javax.swing.JTextField caja5;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

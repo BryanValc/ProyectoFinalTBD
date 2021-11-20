@@ -36,9 +36,9 @@ public class guiUsuario extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        caja1 = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        caja2 = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
 
         setTitle("Formulario usuario");
@@ -55,29 +55,19 @@ public class guiUsuario extends javax.swing.JFrame {
         jLabel1.setText("Usuario");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(10, 11, 70, 14);
-
-        try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("********************")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextField1.setToolTipText("Introduce el nombre de usuario");
-        getContentPane().add(jFormattedTextField1);
-        jFormattedTextField1.setBounds(10, 31, 95, 25);
+		
+        caja1.setToolTipText("Introduce el nombre de usuario");
+        getContentPane().add(caja1);
+        caja1.setBounds(10, 31, 95, 25);
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Contraseña");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(10, 57, 90, 14);
 
-        try {
-            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("********************")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextField2.setToolTipText("Introduce la contraseña del usuario");
-        getContentPane().add(jFormattedTextField2);
-        jFormattedTextField2.setBounds(10, 77, 95, 25);
+        caja2.setToolTipText("Introduce la contraseña del usuario");
+        getContentPane().add(caja2);
+        caja2.setBounds(10, 77, 95, 25);
 
         jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\bryan\\OneDrive\\one drive\\Documentos\\NetBeansProjects\\ProyectoFinalTBD\\archivos\\guiUsuario.png")); // NOI18N
         getContentPane().add(jLabel3);
@@ -117,8 +107,8 @@ public class guiUsuario extends javax.swing.JFrame {
 	}
     
     public void obtenerRegistroTabla(){
-	jFormattedTextField1.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),0));
-	jFormattedTextField2.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),1));
+	caja1.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),0));
+	caja2.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),1));
 
     }
     
@@ -156,8 +146,8 @@ public class guiUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
+    private javax.swing.JFormattedTextField caja1;
+    private javax.swing.JFormattedTextField caja2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
