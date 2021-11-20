@@ -39,6 +39,7 @@ public class guiUsuario extends javax.swing.JFrame {
         caja1 = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
         caja2 = new javax.swing.JFormattedTextField();
+        btnLimpiar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setTitle("Formulario usuario");
@@ -55,7 +56,11 @@ public class guiUsuario extends javax.swing.JFrame {
         jLabel1.setText("Usuario");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(10, 11, 70, 14);
-		
+
+        try {
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         caja1.setToolTipText("Introduce el nombre de usuario");
         getContentPane().add(caja1);
         caja1.setBounds(10, 31, 95, 25);
@@ -65,9 +70,22 @@ public class guiUsuario extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(10, 57, 90, 14);
 
+        try {
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         caja2.setToolTipText("Introduce la contraseña del usuario");
         getContentPane().add(caja2);
         caja2.setBounds(10, 77, 95, 25);
+
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnLimpiar);
+        btnLimpiar.setBounds(170, 80, 110, 23);
 
         jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\bryan\\OneDrive\\one drive\\Documentos\\NetBeansProjects\\ProyectoFinalTBD\\archivos\\guiUsuario.png")); // NOI18N
         getContentPane().add(jLabel3);
@@ -75,6 +93,11 @@ public class guiUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        caja1.setText("");
+        caja2.setText("");
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -90,8 +113,7 @@ public class guiUsuario extends javax.swing.JFrame {
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
-                Rectangle ubicacion = jScrollPane1.getBounds();
-		this.remove(jScrollPane1);
+                jScrollPane1.getViewport().remove(jTable1);
 		jTable1 = new JTable(modeloDatos);
 		jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
 		    @Override
@@ -99,11 +121,8 @@ public class guiUsuario extends javax.swing.JFrame {
 		    	obtenerRegistroTabla();
 		    }
 		});
-		jScrollPane1 = new JScrollPane(jTable1);
-		jScrollPane1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		jScrollPane1.setBounds(ubicacion);
-		this.add(jScrollPane1);
-		this.setVisible(true);
+                jScrollPane1.getViewport().add(jTable1);
+                
 	}
     
     public void obtenerRegistroTabla(){
@@ -146,6 +165,7 @@ public class guiUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JFormattedTextField caja1;
     private javax.swing.JFormattedTextField caja2;
     private javax.swing.JLabel jLabel1;

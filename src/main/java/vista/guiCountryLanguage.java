@@ -4,6 +4,9 @@
  */
 package vista;
 
+import java.awt.event.KeyEvent;
+import javax.swing.JFormattedTextField;
+
 /**
  *
  * @author bryan
@@ -31,9 +34,10 @@ public class guiCountryLanguage extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         caja2 = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        combo1 = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         caja3 = new javax.swing.JFormattedTextField();
+        jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         setTitle("Formulario lenguaje de país");
@@ -58,8 +62,13 @@ public class guiCountryLanguage extends javax.swing.JFrame {
         jLabel2.setText("Lenguaje");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(150, 20, 97, 14);
-		
+
         caja2.setToolTipText("Introduce el nombre del lenguaje");
+        caja2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                caja2KeyPressed(evt);
+            }
+        });
         getContentPane().add(caja2);
         caja2.setBounds(150, 50, 110, 25);
 
@@ -68,15 +77,15 @@ public class guiCountryLanguage extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(30, 79, 97, 14);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sí", "No" }));
-        jComboBox1.setToolTipText("Selecciona si es oficial o no el lenguaje");
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        combo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sí", "No" }));
+        combo1.setToolTipText("Selecciona si es oficial o no el lenguaje");
+        combo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                combo1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(30, 104, 70, 25);
+        getContentPane().add(combo1);
+        combo1.setBounds(30, 104, 70, 25);
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Porcentaje");
@@ -89,8 +98,22 @@ public class guiCountryLanguage extends javax.swing.JFrame {
                 caja3ActionPerformed(evt);
             }
         });
+        caja3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                caja3KeyPressed(evt);
+            }
+        });
         getContentPane().add(caja3);
         caja3.setBounds(30, 160, 70, 25);
+
+        jButton1.setText("Limpiar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(273, 220, 100, 23);
 
         jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\bryan\\OneDrive\\one drive\\Documentos\\NetBeansProjects\\ProyectoFinalTBD\\archivos\\guiLanguage.png")); // NOI18N
         getContentPane().add(jLabel5);
@@ -99,13 +122,48 @@ public class guiCountryLanguage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void combo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_combo1ActionPerformed
 
     private void caja3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_caja3ActionPerformed
+
+    private void caja2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja2KeyPressed
+        int code = evt.getKeyCode();
+	int limite = 30;
+        JFormattedTextField caja = caja2;
+	if ((caja.getText().equals("")?true:!(caja.getText().charAt(caja.getText().length()-1)==' '&&code==KeyEvent.VK_SPACE))&&(caja.getText().length()<limite||code==KeyEvent.VK_BACK_SPACE)) {
+		caja.setEditable(true);
+	}else{
+		caja.setEditable(false);
+	}
+    }//GEN-LAST:event_caja2KeyPressed
+    int peCaja3 = 0;
+    private void caja3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja3KeyPressed
+        int code=evt.getKeyCode();
+        int limite1 = 4;
+        int limite2 = 1;
+        JFormattedTextField caja = caja3;
+	if (((evt.getKeyChar() >= '0'&&evt.getKeyChar() <= '9')&&!caja.getText().contains("."))&&caja.getText().length()<(limite1)||(code==KeyEvent.VK_BACK_SPACE)) {
+            caja.setEditable(true);
+        }else if((caja.getText().length()<(limite1+1))&&(evt.getKeyChar() == '.'&&!caja.getText().contains("."))){
+            peCaja3 = caja.getText().length();
+            caja.setEditable(true);
+	}else if((evt.getKeyChar() >= '0'&&evt.getKeyChar() <= '9')&&(caja.getText().length()<(peCaja3+limite2+1))&&caja.getText().contains(".")){
+            caja.setEditable(true);
+        }else{
+            caja.setEditable(false);
+	}
+    }//GEN-LAST:event_caja3KeyPressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        caja1.setText("");
+        caja2.setText("");
+        caja3.setText("");
+        combo1.setSelectedIndex(-1);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,7 +204,8 @@ public class guiCountryLanguage extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField caja1;
     private javax.swing.JFormattedTextField caja2;
     private javax.swing.JFormattedTextField caja3;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> combo1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

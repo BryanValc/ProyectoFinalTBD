@@ -59,6 +59,7 @@ public class guiCountry extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         caja14 = new javax.swing.JFormattedTextField();
         jLabel15 = new javax.swing.JLabel();
+        btnLimpiar = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
 
         setTitle("Formulario país");
@@ -374,6 +375,15 @@ public class guiCountry extends javax.swing.JFrame {
         getContentPane().add(jLabel15);
         jLabel15.setBounds(10, 200, 160, 14);
 
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnLimpiar);
+        btnLimpiar.setBounds(750, 330, 100, 23);
+
         jLabel16.setIcon(new javax.swing.ImageIcon("C:\\Users\\bryan\\OneDrive\\one drive\\Documentos\\NetBeansProjects\\ProyectoFinalTBD\\archivos\\guiCountry.png")); // NOI18N
         getContentPane().add(jLabel16);
         jLabel16.setBounds(0, 0, 1090, 530);
@@ -594,6 +604,24 @@ public class guiCountry extends javax.swing.JFrame {
 	}
     }//GEN-LAST:event_caja13KeyPressed
 
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        caja1.setText("");
+        caja2.setText("");
+        caja3.setText("");
+        caja4.setText("");
+        caja5.setText("");
+        caja6.setText("");
+        caja7.setText("");
+        caja8.setText("");
+        caja9.setText("");
+        caja10.setText("");
+        caja11.setText("");
+        caja12.setText("");
+        caja13.setText("");
+        caja14.setText("");
+        combo1.setSelectedIndex(-1);
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -630,6 +658,7 @@ public class guiCountry extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JFormattedTextField caja1;
     private javax.swing.JFormattedTextField caja10;
     private javax.swing.JFormattedTextField caja11;
