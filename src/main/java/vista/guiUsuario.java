@@ -5,7 +5,10 @@
 package vista;
 
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
@@ -40,6 +43,7 @@ public class guiUsuario extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         caja2 = new javax.swing.JFormattedTextField();
         btnLimpiar = new javax.swing.JButton();
+        comboFiltro = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
 
         setTitle("Formulario usuario");
@@ -62,6 +66,14 @@ public class guiUsuario extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         caja1.setToolTipText("Introduce el nombre de usuario");
+        caja1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                caja1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                caja1KeyReleased(evt);
+            }
+        });
         getContentPane().add(caja1);
         caja1.setBounds(10, 31, 95, 25);
 
@@ -75,6 +87,14 @@ public class guiUsuario extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         caja2.setToolTipText("Introduce la contraseña del usuario");
+        caja2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                caja2KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                caja2KeyReleased(evt);
+            }
+        });
         getContentPane().add(caja2);
         caja2.setBounds(10, 77, 95, 25);
 
@@ -87,6 +107,11 @@ public class guiUsuario extends javax.swing.JFrame {
         getContentPane().add(btnLimpiar);
         btnLimpiar.setBounds(170, 80, 110, 23);
 
+        comboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Búsqueda precisa", "Búsqueda amplia" }));
+        comboFiltro.setToolTipText("Busca que los datos sean exactamente como en los campos en búsqueda precisa, con la búsqueda amplia busca cualquier coincidencia por cada campo");
+        getContentPane().add(comboFiltro);
+        comboFiltro.setBounds(130, 10, 150, 25);
+
         jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\bryan\\OneDrive\\one drive\\Documentos\\NetBeansProjects\\ProyectoFinalTBD\\archivos\\guiUsuario.png")); // NOI18N
         getContentPane().add(jLabel3);
         jLabel3.setBounds(0, 0, 330, 250);
@@ -98,6 +123,39 @@ public class guiUsuario extends javax.swing.JFrame {
         caja1.setText("");
         caja2.setText("");
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void caja2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja2KeyPressed
+        int code = evt.getKeyCode();
+	int limite = 20;
+        JFormattedTextField caja = caja2;
+	if ((caja.getText().equals("")?true:!(caja.getText().charAt(caja.getText().length()-1)==' '&&code==KeyEvent.VK_SPACE))&&(caja.getText().length()<limite||code==KeyEvent.VK_BACK_SPACE)) {
+		caja.setEditable(true);
+	}else{
+		caja.setEditable(false);
+	}
+        
+    }//GEN-LAST:event_caja2KeyPressed
+
+    private void caja1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja1KeyPressed
+        int code = evt.getKeyCode();
+	int limite = 20;
+        JFormattedTextField caja = caja1;
+	if ((caja.getText().equals("")?true:!(caja.getText().charAt(caja.getText().length()-1)==' '&&code==KeyEvent.VK_SPACE))&&(caja.getText().length()<limite||code==KeyEvent.VK_BACK_SPACE)) {
+		caja.setEditable(true);
+	}else{
+		caja.setEditable(false);
+	}
+    }//GEN-LAST:event_caja1KeyPressed
+
+    private void caja1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja1KeyReleased
+        String sql = consulta();
+        actualizarTabla(sql);
+    }//GEN-LAST:event_caja1KeyReleased
+
+    private void caja2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja2KeyReleased
+        String sql = consulta();
+        actualizarTabla(sql);
+    }//GEN-LAST:event_caja2KeyReleased
 
     /**
      * @param args the command line arguments
@@ -131,6 +189,41 @@ public class guiUsuario extends javax.swing.JFrame {
 
     }
     
+    String op1,op2,op3;
+    public void setOps(JComboBox<String> caja) {
+	switch (""+caja.getSelectedItem()) {
+	case "Búsqueda precisa":
+            op1="= ";
+            op2=" AND ";
+            op3="";
+            break;
+	case "Búsqueda amplia":
+            op1="LIKE ";
+            op2=" OR ";
+            op3="%";
+            break;
+	default:
+		break;
+	}
+    }
+    
+    public String consulta() {//Orden
+	String sql = "SELECT * FROM Usuario ";
+	setOps(comboFiltro);
+		
+	boolean primero=true;
+	if(!caja1.getText().equals("")) {
+            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+            primero=false;
+            sql+=("Username "+op1+" '"+op3+caja1.getText()+op3+"'");
+	}
+	if(!caja2.getText().equals("")) {
+            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+            primero=false;
+            sql+=("Password "+op1+" '"+op3+caja2.getText()+op3+"'");
+	}
+	return sql;
+    }
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -168,6 +261,7 @@ public class guiUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JFormattedTextField caja1;
     private javax.swing.JFormattedTextField caja2;
+    private javax.swing.JComboBox<String> comboFiltro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
