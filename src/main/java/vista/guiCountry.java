@@ -6,6 +6,7 @@ package vista;
 
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTable;
 
@@ -65,6 +66,9 @@ public class guiCountry extends javax.swing.JFrame {
         btnLimpiar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        comboFiltro = new javax.swing.JComboBox<>();
+        comboOperacion = new javax.swing.JComboBox<>();
+        btnOperacion = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
 
         setTitle("Formulario país");
@@ -87,6 +91,11 @@ public class guiCountry extends javax.swing.JFrame {
                 caja1ActionPerformed(evt);
             }
         });
+        caja1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                caja1KeyReleased(evt);
+            }
+        });
         getContentPane().add(caja1);
         caja1.setBounds(60, 10, 50, 25);
 
@@ -105,6 +114,9 @@ public class guiCountry extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 caja2KeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                caja2KeyReleased(evt);
+            }
         });
         getContentPane().add(caja2);
         caja2.setBounds(110, 40, 170, 25);
@@ -117,6 +129,11 @@ public class guiCountry extends javax.swing.JFrame {
         combo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Asia", "Europe", "North America", "Africa", "Oceania", "Antarctica", "South America" }));
         combo1.setSelectedIndex(-1);
         combo1.setToolTipText("Selecciona el continente");
+        combo1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                combo1MouseClicked(evt);
+            }
+        });
         getContentPane().add(combo1);
         combo1.setBounds(600, 10, 150, 25);
 
@@ -139,6 +156,9 @@ public class guiCountry extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 caja3KeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                caja3KeyReleased(evt);
+            }
         });
         getContentPane().add(caja3);
         caja3.setBounds(600, 40, 101, 25);
@@ -158,6 +178,9 @@ public class guiCountry extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 caja4KeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                caja4KeyReleased(evt);
+            }
         });
         getContentPane().add(caja4);
         caja4.setBounds(600, 70, 101, 25);
@@ -175,6 +198,9 @@ public class guiCountry extends javax.swing.JFrame {
         caja5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 caja5KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                caja5KeyReleased(evt);
             }
         });
         getContentPane().add(caja5);
@@ -199,6 +225,9 @@ public class guiCountry extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 caja6KeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                caja6KeyReleased(evt);
+            }
         });
         getContentPane().add(caja6);
         caja6.setBounds(230, 170, 130, 25);
@@ -217,6 +246,9 @@ public class guiCountry extends javax.swing.JFrame {
         caja7.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 caja7KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                caja7KeyReleased(evt);
             }
         });
         getContentPane().add(caja7);
@@ -241,6 +273,9 @@ public class guiCountry extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 caja8KeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                caja8KeyReleased(evt);
+            }
         });
         getContentPane().add(caja8);
         caja8.setBounds(230, 230, 130, 25);
@@ -263,6 +298,9 @@ public class guiCountry extends javax.swing.JFrame {
         caja9.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 caja9KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                caja9KeyReleased(evt);
             }
         });
         getContentPane().add(caja9);
@@ -287,6 +325,9 @@ public class guiCountry extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 caja10KeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                caja10KeyReleased(evt);
+            }
         });
         getContentPane().add(caja10);
         caja10.setBounds(110, 70, 170, 25);
@@ -310,6 +351,9 @@ public class guiCountry extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 caja11KeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                caja11KeyReleased(evt);
+            }
         });
         getContentPane().add(caja11);
         caja11.setBounds(570, 150, 200, 25);
@@ -328,6 +372,9 @@ public class guiCountry extends javax.swing.JFrame {
         caja12.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 caja12KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                caja12KeyReleased(evt);
             }
         });
         getContentPane().add(caja12);
@@ -352,6 +399,9 @@ public class guiCountry extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 caja13KeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                caja13KeyReleased(evt);
+            }
         });
         getContentPane().add(caja13);
         caja13.setBounds(570, 210, 170, 25);
@@ -372,6 +422,11 @@ public class guiCountry extends javax.swing.JFrame {
                 caja14ActionPerformed(evt);
             }
         });
+        caja14.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                caja14KeyReleased(evt);
+            }
+        });
         getContentPane().add(caja14);
         caja14.setBounds(230, 10, 50, 25);
 
@@ -381,6 +436,7 @@ public class guiCountry extends javax.swing.JFrame {
         jLabel15.setBounds(10, 200, 160, 14);
 
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.setToolTipText("Borra todos los textos de los campos");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarActionPerformed(evt);
@@ -392,7 +448,32 @@ public class guiCountry extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(10, 300, 840, 120);
+        jScrollPane1.setBounds(10, 300, 840, 160);
+
+        comboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Búsqueda precisa", "Búsqueda amplia" }));
+        comboFiltro.setToolTipText("Busca que los datos sean exactamente como en los campos en búsqueda precisa, con la búsqueda amplia busca cualquier coincidencia por cada campo");
+        comboFiltro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboFiltroMouseClicked(evt);
+            }
+        });
+        getContentPane().add(comboFiltro);
+        comboFiltro.setBounds(310, 40, 150, 25);
+
+        comboOperacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregar", "Eliminar", "Modificar" }));
+        comboOperacion.setToolTipText("Selecciona el tipo de operación");
+        comboOperacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboOperacionActionPerformed(evt);
+            }
+        });
+        getContentPane().add(comboOperacion);
+        comboOperacion.setBounds(330, 80, 100, 25);
+
+        btnOperacion.setText("Agregar");
+        btnOperacion.setToolTipText("Realizar operación");
+        getContentPane().add(btnOperacion);
+        btnOperacion.setBounds(330, 110, 100, 23);
 
         jLabel16.setIcon(new javax.swing.ImageIcon("C:\\Users\\bryan\\OneDrive\\one drive\\Documentos\\NetBeansProjects\\ProyectoFinalTBD\\archivos\\guiCountry.png")); // NOI18N
         getContentPane().add(jLabel16);
@@ -425,7 +506,8 @@ public class guiCountry extends javax.swing.JFrame {
     public void obtenerRegistroTabla(){
         caja1.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),0));
         caja2.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),1));
-        combo1.setSelectedItem(""+jTable1.getValueAt(jTable1.getSelectedRow(),2));
+        String continent = ""+jTable1.getValueAt(jTable1.getSelectedRow(),2);
+        combo1.setSelectedItem(continent);
         caja3.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),3));
         caja4.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),4));
         caja5.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),5));
@@ -438,6 +520,110 @@ public class guiCountry extends javax.swing.JFrame {
         caja12.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),12));
         caja13.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),13));
         caja14.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),14));
+    }
+    
+    String op1,op2,op3;
+    public void setOps(JComboBox<String> caja) {
+	switch (""+caja.getSelectedItem()) {
+	case "Búsqueda precisa":
+            op1="= ";
+            op2=" AND ";
+            op3="";
+            break;
+	case "Búsqueda amplia":
+            op1="LIKE ";
+            op2=" OR ";
+            op3="%";
+            break;
+	default:
+		break;
+	}
+    }
+    
+    public String consulta() {
+	String sql = "SELECT * FROM Country ";
+	setOps(comboFiltro);
+        
+        String continent = ""+combo1.getSelectedItem();
+		
+	boolean primero=true;
+	if(!caja1.getText().equals("")&&!caja1.getText().equals("   ")) {
+            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+            primero=false;
+            sql+=("Code "+op1+" '"+op3+caja1.getText().replaceAll(" ", "")+op3+"'");
+	}
+	if(!caja2.getText().equals("")) {
+            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+            primero=false;
+            sql+=("Name "+op1+" '"+op3+caja2.getText()+op3+"'");
+	}
+        if(combo1.getSelectedIndex()!=-1) {
+            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+            primero=false;
+            sql+=("Continent "+op1+" '"+op3+continent+op3+"'");
+	}
+        if(!caja3.getText().equals("")) {
+            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+            primero=false;
+            sql+=("Region "+op1+" '"+op3+caja3.getText()+op3+"'");
+	}
+        if(!caja4.getText().equals("")) {
+            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+            primero=false;
+            sql+=("SurfaceArea "+op1+" '"+op3+caja4.getText()+op3+"'");
+	}
+        if(!caja5.getText().equals("")) {
+            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+            primero=false;
+            sql+=("IndepYear "+op1+" '"+op3+caja5.getText()+op3+"'");
+	}
+        if(!caja6.getText().equals("")) {
+            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+            primero=false;
+            sql+=("Population "+op1+" '"+op3+caja6.getText()+op3+"'");
+	}
+        if(!caja7.getText().equals("")) {
+            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+            primero=false;
+            sql+=("LifeExpectancy "+op1+" '"+op3+caja7.getText()+op3+"'");
+	}
+        if(!caja8.getText().equals("")) {
+            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+            primero=false;
+            sql+=("GNP "+op1+" '"+op3+caja8.getText()+op3+"'");
+	}
+        if(!caja9.getText().equals("")) {
+            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+            primero=false;
+            sql+=("GNPOld "+op1+" '"+op3+caja9.getText()+op3+"'");
+	}
+        if(!caja10.getText().equals("")) {
+            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+            primero=false;
+            sql+=("LocalName "+op1+" '"+op3+caja10.getText()+op3+"'");
+	}
+        if(!caja11.getText().equals("")) {
+            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+            primero=false;
+            sql+=("GovernmentForm "+op1+" '"+op3+caja11.getText()+op3+"'");
+	}
+        if(!caja12.getText().equals("")) {
+            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+            primero=false;
+            sql+=("HeadOfState "+op1+" '"+op3+caja12.getText()+op3+"'");
+	}
+        if(!caja13.getText().equals("")) {
+            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+            primero=false;
+            sql+=("Capital "+op1+" '"+op3+caja13.getText()+op3+"'");
+	}
+        if(!caja14.getText().equals("")&&!caja14.getText().equals("  ")) {
+            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+            primero=false;
+            sql+=("Code2 "+op1+" '"+op3+caja14.getText().replaceAll(" ", "")+op3+"'");
+	}
+        System.out.println(sql);
+	return sql;
     }
     
     private void caja1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja1ActionPerformed
@@ -671,6 +857,89 @@ public class guiCountry extends javax.swing.JFrame {
         combo1.setSelectedIndex(-1);
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
+    private void comboOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOperacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboOperacionActionPerformed
+
+    private void caja1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja1KeyReleased
+        String sql = consulta();
+        actualizarTabla(sql);
+    }//GEN-LAST:event_caja1KeyReleased
+
+    private void caja2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja2KeyReleased
+        String sql = consulta();
+        actualizarTabla(sql);
+    }//GEN-LAST:event_caja2KeyReleased
+
+    private void caja3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja3KeyReleased
+        String sql = consulta();
+        actualizarTabla(sql);
+    }//GEN-LAST:event_caja3KeyReleased
+
+    private void caja4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja4KeyReleased
+        String sql = consulta();
+        actualizarTabla(sql);    }//GEN-LAST:event_caja4KeyReleased
+
+    private void caja5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja5KeyReleased
+        String sql = consulta();
+        actualizarTabla(sql);
+    }//GEN-LAST:event_caja5KeyReleased
+
+    private void caja6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja6KeyReleased
+        String sql = consulta();
+        actualizarTabla(sql);
+    }//GEN-LAST:event_caja6KeyReleased
+
+    private void caja7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja7KeyReleased
+        String sql = consulta();
+        actualizarTabla(sql);
+    }//GEN-LAST:event_caja7KeyReleased
+
+    private void caja8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja8KeyReleased
+        String sql = consulta();
+        actualizarTabla(sql);
+    }//GEN-LAST:event_caja8KeyReleased
+
+    private void caja9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja9KeyReleased
+        String sql = consulta();
+        actualizarTabla(sql);
+    }//GEN-LAST:event_caja9KeyReleased
+
+    private void caja10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja10KeyReleased
+        String sql = consulta();
+        actualizarTabla(sql);
+    }//GEN-LAST:event_caja10KeyReleased
+
+    private void caja11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja11KeyReleased
+        String sql = consulta();
+        actualizarTabla(sql);
+    }//GEN-LAST:event_caja11KeyReleased
+
+    private void caja12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja12KeyReleased
+        String sql = consulta();
+        actualizarTabla(sql);
+    }//GEN-LAST:event_caja12KeyReleased
+
+    private void caja13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja13KeyReleased
+        String sql = consulta();
+        actualizarTabla(sql);
+    }//GEN-LAST:event_caja13KeyReleased
+
+    private void caja14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja14KeyReleased
+        String sql = consulta();
+        actualizarTabla(sql);
+    }//GEN-LAST:event_caja14KeyReleased
+
+    private void combo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_combo1MouseClicked
+        String sql = consulta();
+        actualizarTabla(sql);
+    }//GEN-LAST:event_combo1MouseClicked
+
+    private void comboFiltroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboFiltroMouseClicked
+        String sql = consulta();
+        actualizarTabla(sql);
+    }//GEN-LAST:event_comboFiltroMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -708,6 +977,7 @@ public class guiCountry extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnOperacion;
     private javax.swing.JFormattedTextField caja1;
     private javax.swing.JFormattedTextField caja10;
     private javax.swing.JFormattedTextField caja11;
@@ -723,6 +993,8 @@ public class guiCountry extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField caja8;
     private javax.swing.JFormattedTextField caja9;
     private javax.swing.JComboBox<String> combo1;
+    private javax.swing.JComboBox<String> comboFiltro;
+    private javax.swing.JComboBox<String> comboOperacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

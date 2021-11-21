@@ -44,17 +44,24 @@ public class guiUsuario extends javax.swing.JFrame {
         caja2 = new javax.swing.JFormattedTextField();
         btnLimpiar = new javax.swing.JButton();
         comboFiltro = new javax.swing.JComboBox<>();
+        comboOperacion = new javax.swing.JComboBox<>();
+        btnOperacion = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setTitle("Formulario usuario");
-        setMinimumSize(new java.awt.Dimension(331, 252));
+        setMinimumSize(new java.awt.Dimension(331, 340));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jScrollPane1.setDoubleBuffered(true);
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(10, 120, 271, 121);
+        jScrollPane1.setBounds(10, 170, 271, 121);
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Usuario");
@@ -99,22 +106,38 @@ public class guiUsuario extends javax.swing.JFrame {
         caja2.setBounds(10, 77, 95, 25);
 
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.setToolTipText("Borra todos los textos de los campos");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarActionPerformed(evt);
             }
         });
         getContentPane().add(btnLimpiar);
-        btnLimpiar.setBounds(170, 80, 110, 23);
+        btnLimpiar.setBounds(10, 120, 90, 23);
 
         comboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Búsqueda precisa", "Búsqueda amplia" }));
         comboFiltro.setToolTipText("Busca que los datos sean exactamente como en los campos en búsqueda precisa, con la búsqueda amplia busca cualquier coincidencia por cada campo");
+        comboFiltro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboFiltroMouseClicked(evt);
+            }
+        });
         getContentPane().add(comboFiltro);
-        comboFiltro.setBounds(130, 10, 150, 25);
+        comboFiltro.setBounds(130, 30, 150, 25);
+
+        comboOperacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregar", "Eliminar", "Modificar" }));
+        comboOperacion.setToolTipText("Selecciona el tipo de operación");
+        getContentPane().add(comboOperacion);
+        comboOperacion.setBounds(150, 80, 100, 25);
+
+        btnOperacion.setText("Agregar");
+        btnOperacion.setToolTipText("Realizar operación");
+        getContentPane().add(btnOperacion);
+        btnOperacion.setBounds(150, 110, 100, 23);
 
         jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\bryan\\OneDrive\\one drive\\Documentos\\NetBeansProjects\\ProyectoFinalTBD\\archivos\\guiUsuario.png")); // NOI18N
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 0, 330, 250);
+        jLabel3.setBounds(0, 0, 350, 310);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -156,6 +179,15 @@ public class guiUsuario extends javax.swing.JFrame {
         String sql = consulta();
         actualizarTabla(sql);
     }//GEN-LAST:event_caja2KeyReleased
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        
+    }//GEN-LAST:event_formMouseClicked
+
+    private void comboFiltroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboFiltroMouseClicked
+        String sql = consulta();
+        actualizarTabla(sql);
+    }//GEN-LAST:event_comboFiltroMouseClicked
 
     /**
      * @param args the command line arguments
@@ -207,7 +239,7 @@ public class guiUsuario extends javax.swing.JFrame {
 	}
     }
     
-    public String consulta() {//Orden
+    public String consulta() {
 	String sql = "SELECT * FROM Usuario ";
 	setOps(comboFiltro);
 		
@@ -222,6 +254,7 @@ public class guiUsuario extends javax.swing.JFrame {
             primero=false;
             sql+=("Password "+op1+" '"+op3+caja2.getText()+op3+"'");
 	}
+        System.out.println(sql);
 	return sql;
     }
     
@@ -259,9 +292,11 @@ public class guiUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnOperacion;
     private javax.swing.JFormattedTextField caja1;
     private javax.swing.JFormattedTextField caja2;
     private javax.swing.JComboBox<String> comboFiltro;
+    private javax.swing.JComboBox<String> comboOperacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

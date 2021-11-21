@@ -6,6 +6,7 @@ package vista;
 
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 
 /**
@@ -44,10 +45,13 @@ public class guiCity extends javax.swing.JFrame {
         caja3 = new javax.swing.JFormattedTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        comboFiltro = new javax.swing.JComboBox<>();
+        comboOperacion = new javax.swing.JComboBox<>();
+        btnOperacion = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
         setTitle("Formulario ciudad");
-        setMinimumSize(new java.awt.Dimension(600, 350));
+        setMinimumSize(new java.awt.Dimension(620, 370));
         getContentPane().setLayout(null);
 
         jLabel1.setText("ID ciudad");
@@ -78,12 +82,15 @@ public class guiCity extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLimpiar);
-        btnLimpiar.setBounds(440, 100, 100, 23);
+        btnLimpiar.setBounds(290, 100, 100, 23);
 
         caja1.setToolTipText("Introduce el ID de la ciudad");
         caja1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 caja1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                caja1KeyReleased(evt);
             }
         });
         getContentPane().add(caja1);
@@ -94,6 +101,9 @@ public class guiCity extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 caja2KeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                caja2KeyReleased(evt);
+            }
         });
         getContentPane().add(caja2);
         caja2.setBounds(150, 40, 120, 25);
@@ -103,6 +113,9 @@ public class guiCity extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 caja4KeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                caja4KeyReleased(evt);
+            }
         });
         getContentPane().add(caja4);
         caja4.setBounds(150, 100, 120, 25);
@@ -111,6 +124,9 @@ public class guiCity extends javax.swing.JFrame {
         caja5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 caja5KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                caja5KeyReleased(evt);
             }
         });
         getContentPane().add(caja5);
@@ -127,13 +143,43 @@ public class guiCity extends javax.swing.JFrame {
                 caja3ActionPerformed(evt);
             }
         });
+        caja3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                caja3KeyReleased(evt);
+            }
+        });
         getContentPane().add(caja3);
         caja3.setBounds(20, 100, 120, 25);
 
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(20, 140, 520, 140);
+        jScrollPane1.setBounds(20, 140, 570, 170);
+
+        comboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Búsqueda precisa", "Búsqueda amplia" }));
+        comboFiltro.setToolTipText("Busca que los datos sean exactamente como en los campos en búsqueda precisa, con la búsqueda amplia busca cualquier coincidencia por cada campo");
+        comboFiltro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboFiltroMouseClicked(evt);
+            }
+        });
+        getContentPane().add(comboFiltro);
+        comboFiltro.setBounds(440, 30, 150, 25);
+
+        comboOperacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregar", "Eliminar", "Modificar" }));
+        comboOperacion.setToolTipText("Selecciona el tipo de operación");
+        comboOperacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboOperacionActionPerformed(evt);
+            }
+        });
+        getContentPane().add(comboOperacion);
+        comboOperacion.setBounds(460, 70, 100, 25);
+
+        btnOperacion.setText("Agregar");
+        btnOperacion.setToolTipText("Realizar operación");
+        getContentPane().add(btnOperacion);
+        btnOperacion.setBounds(460, 100, 100, 23);
 
         jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\bryan\\OneDrive\\one drive\\Documentos\\NetBeansProjects\\ProyectoFinalTBD\\archivos\\guiCity.png")); // NOI18N
         getContentPane().add(jLabel6);
@@ -180,6 +226,57 @@ public class guiCity extends javax.swing.JFrame {
         caja5.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),4));
     }
     
+    String op1,op2,op3;
+    public void setOps(JComboBox<String> caja) {
+	switch (""+caja.getSelectedItem()) {
+	case "Búsqueda precisa":
+            op1="= ";
+            op2=" AND ";
+            op3="";
+            break;
+	case "Búsqueda amplia":
+            op1="LIKE ";
+            op2=" OR ";
+            op3="%";
+            break;
+	default:
+		break;
+	}
+    }
+    
+    public String consulta() {
+	String sql = "SELECT * FROM City ";
+	setOps(comboFiltro);
+		
+	boolean primero=true;
+	if(!caja1.getText().equals("")&&!caja1.getText().equals("   ")) {
+            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+            primero=false;
+            sql+=("ID "+op1+" '"+op3+caja1.getText().replaceAll(" ", "")+op3+"'");
+	}
+	if(!caja2.getText().equals("")) {
+            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+            primero=false;
+            sql+=("Name "+op1+" '"+op3+caja2.getText()+op3+"'");
+	}
+        if(!caja3.getText().equals("")&&!caja3.getText().equals("   ")) {
+            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+            primero=false;
+            sql+=("CountryCode "+op1+" '"+op3+caja3.getText().replaceAll(" ", "")+op3+"'");
+	}
+        if(!caja4.getText().equals("")) {
+            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+            primero=false;
+            sql+=("District "+op1+" '"+op3+caja4.getText()+op3+"'");
+	}
+        if(!caja5.getText().equals("")) {
+            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+            primero=false;
+            sql+=("Population "+op1+" '"+op3+caja5.getText()+op3+"'");
+	}
+	return sql;
+    }
+    
     private void caja1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja1KeyPressed
        int code=evt.getKeyCode();
        if (((evt.getKeyChar() >= '0'&&evt.getKeyChar() <= '9'))&&caja1.getText().length()<10||(code==KeyEvent.VK_BACK_SPACE)) {
@@ -223,6 +320,40 @@ public class guiCity extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_caja5KeyPressed
 
+    private void comboOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOperacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboOperacionActionPerformed
+
+    private void caja1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja1KeyReleased
+        String sql = consulta();
+        actualizarTabla(sql);
+    }//GEN-LAST:event_caja1KeyReleased
+
+    private void caja2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja2KeyReleased
+        String sql = consulta();
+        actualizarTabla(sql);
+    }//GEN-LAST:event_caja2KeyReleased
+
+    private void caja3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja3KeyReleased
+        String sql = consulta();
+        actualizarTabla(sql);
+    }//GEN-LAST:event_caja3KeyReleased
+
+    private void caja4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja4KeyReleased
+        String sql = consulta();
+        actualizarTabla(sql);
+    }//GEN-LAST:event_caja4KeyReleased
+
+    private void caja5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja5KeyReleased
+        String sql = consulta();
+        actualizarTabla(sql);
+    }//GEN-LAST:event_caja5KeyReleased
+
+    private void comboFiltroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboFiltroMouseClicked
+        String sql = consulta();
+        actualizarTabla(sql);
+    }//GEN-LAST:event_comboFiltroMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -256,11 +387,14 @@ public class guiCity extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnOperacion;
     private javax.swing.JTextField caja1;
     private javax.swing.JTextField caja2;
     private javax.swing.JFormattedTextField caja3;
     private javax.swing.JTextField caja4;
     private javax.swing.JTextField caja5;
+    private javax.swing.JComboBox<String> comboFiltro;
+    private javax.swing.JComboBox<String> comboOperacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
