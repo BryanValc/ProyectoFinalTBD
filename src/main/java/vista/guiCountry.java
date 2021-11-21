@@ -5,7 +5,9 @@
 package vista;
 
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
 import javax.swing.JFormattedTextField;
+import javax.swing.JTable;
 
 /**
  *
@@ -18,6 +20,7 @@ public class guiCountry extends javax.swing.JFrame {
      */
     public guiCountry() {
         initComponents();
+        actualizarTabla("SELECT * FROM Country;");
     }
 
     /**
@@ -60,6 +63,8 @@ public class guiCountry extends javax.swing.JFrame {
         caja14 = new javax.swing.JFormattedTextField();
         jLabel15 = new javax.swing.JLabel();
         btnLimpiar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel16 = new javax.swing.JLabel();
 
         setTitle("Formulario país");
@@ -382,7 +387,12 @@ public class guiCountry extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLimpiar);
-        btnLimpiar.setBounds(750, 330, 100, 23);
+        btnLimpiar.setBounds(750, 260, 100, 23);
+
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(10, 300, 840, 120);
 
         jLabel16.setIcon(new javax.swing.ImageIcon("C:\\Users\\bryan\\OneDrive\\one drive\\Documentos\\NetBeansProjects\\ProyectoFinalTBD\\archivos\\guiCountry.png")); // NOI18N
         getContentPane().add(jLabel16);
@@ -391,6 +401,45 @@ public class guiCountry extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void actualizarTabla(String sql) {
+		ResultSetTableModel modeloDatos =null;
+		try {
+			modeloDatos = new ResultSetTableModel("com.mysql.cj.jdbc.Driver","jdbc:mysql://localhost:3306/world",sql);
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+                jScrollPane1.getViewport().remove(jTable1);
+		jTable1 = new JTable(modeloDatos);
+		jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+		    @Override
+		    public void mouseClicked(java.awt.event.MouseEvent evt) {
+		    	obtenerRegistroTabla();
+		    }
+		});
+                jScrollPane1.getViewport().add(jTable1);
+                
+	}
+    
+    public void obtenerRegistroTabla(){
+        caja1.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),0));
+        caja2.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),1));
+        combo1.setSelectedItem(""+jTable1.getValueAt(jTable1.getSelectedRow(),2));
+        caja3.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),3));
+        caja4.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),4));
+        caja5.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),5));
+        caja6.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),6));
+        caja7.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),7));
+        caja8.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),8));
+        caja9.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),9));
+        caja10.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),10));
+        caja11.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),11));
+        caja12.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),12));
+        caja13.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),13));
+        caja14.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),14));
+    }
+    
     private void caja1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_caja1ActionPerformed
@@ -690,5 +739,7 @@ public class guiCountry extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

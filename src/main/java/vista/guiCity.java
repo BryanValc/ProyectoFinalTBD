@@ -5,6 +5,8 @@
 package vista;
 
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import javax.swing.JTable;
 
 /**
  *
@@ -17,6 +19,7 @@ public class guiCity extends javax.swing.JFrame {
      */
     public guiCity() {
         initComponents();
+        actualizarTabla("SELECT * FROM City;");
     }
 
     /**
@@ -39,6 +42,8 @@ public class guiCity extends javax.swing.JFrame {
         caja4 = new javax.swing.JTextField();
         caja5 = new javax.swing.JTextField();
         caja3 = new javax.swing.JFormattedTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
 
         setTitle("Formulario ciudad");
@@ -51,19 +56,19 @@ public class guiCity extends javax.swing.JFrame {
 
         jLabel2.setText("Nombre");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 80, 70, 14);
+        jLabel2.setBounds(150, 20, 70, 14);
 
         jLabel3.setText("Código de país");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(20, 140, 130, 14);
+        jLabel3.setBounds(20, 80, 130, 14);
 
         jLabel4.setText("Distrito");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(20, 200, 70, 14);
+        jLabel4.setBounds(150, 80, 70, 14);
 
         jLabel5.setText("Población");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(20, 260, 80, 14);
+        jLabel5.setBounds(290, 20, 80, 14);
 
         btnLimpiar.setText("Limpiar");
         btnLimpiar.setToolTipText("Borra todos los textos de los campos");
@@ -73,7 +78,7 @@ public class guiCity extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLimpiar);
-        btnLimpiar.setBounds(443, 280, 100, 23);
+        btnLimpiar.setBounds(440, 100, 100, 23);
 
         caja1.setToolTipText("Introduce el ID de la ciudad");
         caja1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -91,7 +96,7 @@ public class guiCity extends javax.swing.JFrame {
             }
         });
         getContentPane().add(caja2);
-        caja2.setBounds(20, 100, 120, 25);
+        caja2.setBounds(150, 40, 120, 25);
 
         caja4.setToolTipText("Introduce el distrito en el que se encuentra");
         caja4.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -100,7 +105,7 @@ public class guiCity extends javax.swing.JFrame {
             }
         });
         getContentPane().add(caja4);
-        caja4.setBounds(20, 220, 120, 25);
+        caja4.setBounds(150, 100, 120, 25);
 
         caja5.setToolTipText("Introduce el tamaño de la población");
         caja5.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -109,7 +114,7 @@ public class guiCity extends javax.swing.JFrame {
             }
         });
         getContentPane().add(caja5);
-        caja5.setBounds(20, 280, 120, 25);
+        caja5.setBounds(290, 40, 120, 25);
 
         try {
             caja3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UUU")));
@@ -123,7 +128,12 @@ public class guiCity extends javax.swing.JFrame {
             }
         });
         getContentPane().add(caja3);
-        caja3.setBounds(20, 160, 120, 25);
+        caja3.setBounds(20, 100, 120, 25);
+
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(20, 140, 520, 140);
 
         jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\bryan\\OneDrive\\one drive\\Documentos\\NetBeansProjects\\ProyectoFinalTBD\\archivos\\guiCity.png")); // NOI18N
         getContentPane().add(jLabel6);
@@ -141,6 +151,35 @@ public class guiCity extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
+    public void actualizarTabla(String sql) {
+		ResultSetTableModel modeloDatos =null;
+		try {
+			modeloDatos = new ResultSetTableModel("com.mysql.cj.jdbc.Driver","jdbc:mysql://localhost:3306/world",sql);
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+                jScrollPane1.getViewport().remove(jTable1);
+		jTable1 = new JTable(modeloDatos);
+		jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+		    @Override
+		    public void mouseClicked(java.awt.event.MouseEvent evt) {
+		    	obtenerRegistroTabla();
+		    }
+		});
+                jScrollPane1.getViewport().add(jTable1);
+                
+	}
+    
+    public void obtenerRegistroTabla(){
+        caja1.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),0));
+        caja2.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),1));
+        caja3.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),2));
+        caja4.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),3));
+        caja5.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),4));
+    }
+    
     private void caja1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja1KeyPressed
        int code=evt.getKeyCode();
        if (((evt.getKeyChar() >= '0'&&evt.getKeyChar() <= '9'))&&caja1.getText().length()<10||(code==KeyEvent.VK_BACK_SPACE)) {
@@ -228,5 +267,7 @@ public class guiCity extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

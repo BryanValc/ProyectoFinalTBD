@@ -5,7 +5,9 @@
 package vista;
 
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
 import javax.swing.JFormattedTextField;
+import javax.swing.JTable;
 
 /**
  *
@@ -18,6 +20,7 @@ public class guiCountryLanguage extends javax.swing.JFrame {
      */
     public guiCountryLanguage() {
         initComponents();
+        actualizarTabla("SELECT * FROM CountryLanguage;");
     }
 
     /**
@@ -38,10 +41,12 @@ public class guiCountryLanguage extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         caja3 = new javax.swing.JFormattedTextField();
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
 
         setTitle("Formulario lenguaje de país");
-        setMinimumSize(new java.awt.Dimension(400, 300));
+        setMinimumSize(new java.awt.Dimension(400, 400));
         getContentPane().setLayout(null);
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -113,7 +118,12 @@ public class guiCountryLanguage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(273, 220, 100, 23);
+        jButton1.setBounds(270, 160, 100, 23);
+
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(30, 210, 340, 120);
 
         jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\bryan\\OneDrive\\one drive\\Documentos\\NetBeansProjects\\ProyectoFinalTBD\\archivos\\guiLanguage.png")); // NOI18N
         getContentPane().add(jLabel5);
@@ -122,6 +132,40 @@ public class guiCountryLanguage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void actualizarTabla(String sql) {
+		ResultSetTableModel modeloDatos =null;
+		try {
+			modeloDatos = new ResultSetTableModel("com.mysql.cj.jdbc.Driver","jdbc:mysql://localhost:3306/world",sql);
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+                jScrollPane1.getViewport().remove(jTable1);
+		jTable1 = new JTable(modeloDatos);
+		jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+		    @Override
+		    public void mouseClicked(java.awt.event.MouseEvent evt) {
+		    	obtenerRegistroTabla();
+		    }
+		});
+                jScrollPane1.getViewport().add(jTable1);
+                
+	}
+    
+    public void obtenerRegistroTabla(){
+        caja1.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),0));
+        caja2.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),1));
+        String isOfficial = ""+jTable1.getValueAt(jTable1.getSelectedRow(),2);
+        if(isOfficial.contains("T")){
+            combo1.setSelectedItem("Sí");
+        }else{
+            combo1.setSelectedItem("No");
+        }
+        caja3.setText(""+jTable1.getValueAt(jTable1.getSelectedRow(),3));
+        
+    }
+    
     private void combo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_combo1ActionPerformed
@@ -211,5 +255,7 @@ public class guiCountryLanguage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
