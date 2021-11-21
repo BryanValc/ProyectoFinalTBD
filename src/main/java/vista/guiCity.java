@@ -188,7 +188,7 @@ public class guiCity extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+    public void limpiar(){
         caja1.setText("");
         caja2.setText("");
         caja3.setText("");
@@ -196,6 +196,10 @@ public class guiCity extends javax.swing.JFrame {
         caja5.setText("");
         String sql = consulta();
         actualizarTabla(sql);
+    }
+    
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     public void actualizarTabla(String sql) {

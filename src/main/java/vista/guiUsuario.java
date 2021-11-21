@@ -4,14 +4,18 @@
  */
 package vista;
 
+import controlador.UsuarioDAO;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
+import modelo.Usuario;
 
 /**
  *
@@ -127,11 +131,21 @@ public class guiUsuario extends javax.swing.JFrame {
 
         comboOperacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregar", "Eliminar", "Modificar" }));
         comboOperacion.setToolTipText("Selecciona el tipo de operación");
+        comboOperacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboOperacionActionPerformed(evt);
+            }
+        });
         getContentPane().add(comboOperacion);
         comboOperacion.setBounds(150, 80, 100, 25);
 
         btnOperacion.setText("Agregar");
         btnOperacion.setToolTipText("Realizar operación");
+        btnOperacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOperacionActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnOperacion);
         btnOperacion.setBounds(150, 110, 100, 23);
 
@@ -142,11 +156,15 @@ public class guiUsuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+    public void limpiar(){
         caja1.setText("");
         caja2.setText("");
         String sql = consulta();
         actualizarTabla(sql);
+    }
+    
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void caja2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja2KeyPressed
@@ -190,6 +208,68 @@ public class guiUsuario extends javax.swing.JFrame {
         String sql = consulta();
         actualizarTabla(sql);
     }//GEN-LAST:event_comboFiltroMouseClicked
+
+    private void comboOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOperacionActionPerformed
+        btnOperacion.setText(""+comboOperacion.getSelectedItem());
+    }//GEN-LAST:event_comboOperacionActionPerformed
+
+    private void btnOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperacionActionPerformed
+        String operacion = btnOperacion.getText();
+        ArrayList<Usuario> comprobacion = new ArrayList<Usuario>();
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario usuario = new Usuario(
+                caja1.getText(),
+                caja2.getText());
+        
+        switch(operacion){
+            case "Eliminar":
+                if (caja1.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null,"No se está especificando el ID del usuario a eliminar");
+		}else{
+                    comprobacion = usuarioDAO.buscar("SELECT * FROM Usuario WHERE Username = '"+caja1.getText()+"'");
+                    if (comprobacion.size()==0) {
+			JOptionPane.showMessageDialog(null,"No se pudo encontrar usuario a eliminar");
+                    }else{
+                        int reply = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas eliminar el usuario?", "¡Alerta!", JOptionPane.YES_NO_OPTION);
+                        if (reply == JOptionPane.YES_OPTION) {
+                            if (usuarioDAO.borrarRegistro(usuario)) {	
+                                JOptionPane.showMessageDialog(null,"Usuario eliminado exitosamente");
+                            }else {	
+                                JOptionPane.showMessageDialog(null,"No se pudo eliminar el usuario");	
+                            }
+			}
+                    }
+                }
+                break;
+            case "Modificar":
+                if(comprobarCampos()){
+                    comprobacion = usuarioDAO.buscar("SELECT * FROM Usuario WHERE Username = '"+caja1.getText()+"'");
+                    if (comprobacion.size()==0) {
+			JOptionPane.showMessageDialog(null,"No se pudo encontrar el usuario a modificar");
+                    }else {
+                        if (usuarioDAO.modificarRegistro(usuario)) {
+                            JOptionPane.showMessageDialog(null,"Usuario modificado exitosamente");
+			}else{	
+                            JOptionPane.showMessageDialog(null,"No se pudo modificar el usuario");	
+                        }
+                    }
+                }
+                
+                break;
+            case "Agregar":
+                if(comprobarCampos()){
+                    if (usuarioDAO.insertarRegistro(usuario)) {
+			JOptionPane.showMessageDialog(null,"Usuario agregado exitosamente");
+                    }else {
+			JOptionPane.showMessageDialog(null,"No se pudo agregar el usuario, quizá ya hay uno con el mismo ID");
+                    }
+                }
+                break;
+            default:break;
+        }
+        
+        limpiar();
+    }//GEN-LAST:event_btnOperacionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,8 +336,19 @@ public class guiUsuario extends javax.swing.JFrame {
             primero=false;
             sql+=("Password "+op1+" '"+op3+caja2.getText()+op3+"'");
 	}
-        System.out.println(sql);
 	return sql;
+    }
+    
+    public boolean comprobarCampos() {
+        if(caja1.getText().equals("")) {
+            JOptionPane.showMessageDialog(null,"Falta el nombre de usuario");
+            return false;
+	}
+	if(caja2.getText().equals("")) {
+            JOptionPane.showMessageDialog(null,"Falta la contraseña");
+            return false;
+	}
+        return true;
     }
     
     public static void main(String args[]) {

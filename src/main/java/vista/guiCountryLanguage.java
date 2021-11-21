@@ -266,7 +266,6 @@ public class guiCountryLanguage extends javax.swing.JFrame {
             primero=false;
             sql+=("Percentage "+op1+" '"+op3+caja3.getText()+op3+"'");
 	}
-        System.out.println(sql);
 	return sql;
     }
     
@@ -306,13 +305,17 @@ public class guiCountryLanguage extends javax.swing.JFrame {
 	}
     }//GEN-LAST:event_caja3KeyPressed
 
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+    public void limpiar(){
         caja1.setText("");
         caja2.setText("");
         caja3.setText("");
         combo1.setSelectedIndex(-1);
         String sql = consulta();
         actualizarTabla(sql);
+    }
+    
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void caja1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja1KeyReleased

@@ -622,7 +622,6 @@ public class guiCountry extends javax.swing.JFrame {
             primero=false;
             sql+=("Code2 "+op1+" '"+op3+caja14.getText().replaceAll(" ", "")+op3+"'");
 	}
-        System.out.println(sql);
 	return sql;
     }
     
@@ -839,7 +838,7 @@ public class guiCountry extends javax.swing.JFrame {
 	}
     }//GEN-LAST:event_caja13KeyPressed
 
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+    public void limpiar(){
         caja1.setText("");
         caja2.setText("");
         caja3.setText("");
@@ -857,6 +856,10 @@ public class guiCountry extends javax.swing.JFrame {
         combo1.setSelectedIndex(-1);
         String sql = consulta();
         actualizarTabla(sql);
+    }
+    
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void comboOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOperacionActionPerformed
