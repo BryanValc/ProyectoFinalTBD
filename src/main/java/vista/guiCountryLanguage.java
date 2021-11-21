@@ -311,6 +311,8 @@ public class guiCountryLanguage extends javax.swing.JFrame {
         caja2.setText("");
         caja3.setText("");
         combo1.setSelectedIndex(-1);
+        String sql = consulta();
+        actualizarTabla(sql);
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void caja1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja1KeyReleased

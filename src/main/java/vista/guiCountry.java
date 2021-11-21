@@ -572,7 +572,7 @@ public class guiCountry extends javax.swing.JFrame {
             primero=false;
             sql+=("SurfaceArea "+op1+" '"+op3+caja4.getText()+op3+"'");
 	}
-        if(!caja5.getText().equals("")) {
+        if(!caja5.getText().equals("")&&!caja5.getText().equals("null")) {
             if (!primero) {sql+=op2;}else {sql+="WHERE ";}
             primero=false;
             sql+=("IndepYear "+op1+" '"+op3+caja5.getText()+op3+"'");
@@ -582,7 +582,7 @@ public class guiCountry extends javax.swing.JFrame {
             primero=false;
             sql+=("Population "+op1+" '"+op3+caja6.getText()+op3+"'");
 	}
-        if(!caja7.getText().equals("")) {
+        if(!caja7.getText().equals("")&&!caja7.getText().equals("null")) {
             if (!primero) {sql+=op2;}else {sql+="WHERE ";}
             primero=false;
             sql+=("LifeExpectancy "+op1+" '"+op3+caja7.getText()+op3+"'");
@@ -592,7 +592,7 @@ public class guiCountry extends javax.swing.JFrame {
             primero=false;
             sql+=("GNP "+op1+" '"+op3+caja8.getText()+op3+"'");
 	}
-        if(!caja9.getText().equals("")) {
+        if(!caja9.getText().equals("")&&!caja9.getText().equals("null")) {
             if (!primero) {sql+=op2;}else {sql+="WHERE ";}
             primero=false;
             sql+=("GNPOld "+op1+" '"+op3+caja9.getText()+op3+"'");
@@ -612,7 +612,7 @@ public class guiCountry extends javax.swing.JFrame {
             primero=false;
             sql+=("HeadOfState "+op1+" '"+op3+caja12.getText()+op3+"'");
 	}
-        if(!caja13.getText().equals("")) {
+        if(!caja13.getText().equals("")&&!caja13.getText().equals("null")) {
             if (!primero) {sql+=op2;}else {sql+="WHERE ";}
             primero=false;
             sql+=("Capital "+op1+" '"+op3+caja13.getText()+op3+"'");
@@ -855,6 +855,8 @@ public class guiCountry extends javax.swing.JFrame {
         caja13.setText("");
         caja14.setText("");
         combo1.setSelectedIndex(-1);
+        String sql = consulta();
+        actualizarTabla(sql);
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void comboOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOperacionActionPerformed

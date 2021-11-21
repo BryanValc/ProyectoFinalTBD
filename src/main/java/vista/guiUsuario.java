@@ -145,6 +145,8 @@ public class guiUsuario extends javax.swing.JFrame {
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         caja1.setText("");
         caja2.setText("");
+        String sql = consulta();
+        actualizarTabla(sql);
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void caja2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja2KeyPressed

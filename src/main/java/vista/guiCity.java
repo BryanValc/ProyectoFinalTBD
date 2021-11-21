@@ -194,7 +194,8 @@ public class guiCity extends javax.swing.JFrame {
         caja3.setText("");
         caja4.setText("");
         caja5.setText("");
-        
+        String sql = consulta();
+        actualizarTabla(sql);
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     public void actualizarTabla(String sql) {
