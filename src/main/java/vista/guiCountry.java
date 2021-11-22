@@ -1069,7 +1069,6 @@ public class guiCountry extends javax.swing.JFrame {
         CountryDAO countryDAO = new CountryDAO();
         Country country=null;
         
-        
         switch(operacion){
             case "Eliminar":
                 if (caja1.getText().equals("")||caja1.getText().equals("   ")) {

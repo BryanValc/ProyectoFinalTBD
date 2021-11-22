@@ -4,10 +4,14 @@
  */
 package vista;
 
+import controlador.CityDAO;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import modelo.City;
 
 /**
  *
@@ -178,6 +182,11 @@ public class guiCity extends javax.swing.JFrame {
 
         btnOperacion.setText("Agregar");
         btnOperacion.setToolTipText("Realizar operación");
+        btnOperacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOperacionActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnOperacion);
         btnOperacion.setBounds(460, 100, 100, 23);
 
@@ -259,26 +268,28 @@ public class guiCity extends javax.swing.JFrame {
             primero=false;
             sql+=("ID "+op1+" '"+op3+caja1.getText().replaceAll(" ", "")+op3+"'");
 	}
-	if(!caja2.getText().equals("")) {
-            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
-            primero=false;
-            sql+=("Name "+op1+" '"+op3+caja2.getText()+op3+"'");
-	}
-        if(!caja3.getText().equals("")&&!caja3.getText().equals("   ")) {
-            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
-            primero=false;
-            sql+=("CountryCode "+op1+" '"+op3+caja3.getText().replaceAll(" ", "")+op3+"'");
-	}
-        if(!caja4.getText().equals("")) {
-            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
-            primero=false;
-            sql+=("District "+op1+" '"+op3+caja4.getText()+op3+"'");
-	}
-        if(!caja5.getText().equals("")) {
-            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
-            primero=false;
-            sql+=("Population "+op1+" '"+op3+caja5.getText()+op3+"'");
-	}
+        if(!btnOperacion.getText().contains("Modificar")){
+            if(!caja2.getText().equals("")) {
+                if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+                primero=false;
+                sql+=("Name "+op1+" '"+op3+caja2.getText()+op3+"'");
+            }
+            if(!caja3.getText().equals("")&&!caja3.getText().equals("   ")) {
+                if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+                primero=false;
+                sql+=("CountryCode "+op1+" '"+op3+caja3.getText().replaceAll(" ", "")+op3+"'");
+            }
+            if(!caja4.getText().equals("")) {
+                if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+                primero=false;
+                sql+=("District "+op1+" '"+op3+caja4.getText()+op3+"'");
+            }
+            if(!caja5.getText().equals("")) {
+                if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+                primero=false;
+                sql+=("Population "+op1+" '"+op3+caja5.getText()+op3+"'");
+            }
+        }
 	return sql;
     }
     
@@ -326,7 +337,7 @@ public class guiCity extends javax.swing.JFrame {
     }//GEN-LAST:event_caja5KeyPressed
 
     private void comboOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOperacionActionPerformed
-        // TODO add your handling code here:
+        btnOperacion.setText(""+comboOperacion.getSelectedItem());
     }//GEN-LAST:event_comboOperacionActionPerformed
 
     private void caja1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja1KeyReleased
@@ -358,6 +369,114 @@ public class guiCity extends javax.swing.JFrame {
         String sql = consulta();
         actualizarTabla(sql);
     }//GEN-LAST:event_comboFiltroMouseClicked
+
+    public boolean comprobarCampos(){
+        
+        if(caja1.getText().equals("")) {
+            JOptionPane.showMessageDialog(null,"Falta el ID de la ciudad");
+            caja1.requestFocus();
+            return false;
+	}
+	if(caja2.getText().equals("")) {
+            JOptionPane.showMessageDialog(null,"Falta el nombre de la ciudad");
+            caja2.requestFocus();
+            return false;
+	}
+        if(caja3.getText().equals("")||caja3.getText().equals("   ")) {
+            JOptionPane.showMessageDialog(null,"Falta el código del país");
+            caja3.requestFocus();
+            return false;
+	}
+        if(caja4.getText().equals("")) {
+            JOptionPane.showMessageDialog(null,"Falta indicar el distrito");
+            caja4.requestFocus();
+            return false;
+	}
+        if(caja5.getText().equals("")||caja5.getText().equals("null")) {
+            JOptionPane.showMessageDialog(null,"Falta ingresar la población");
+            caja5.requestFocus();
+            return false;
+	}
+        
+        return true;
+    }
+    
+    public City createCity(boolean isForDeletion){
+        City city = null;
+        if (isForDeletion) {
+            city = new City(Integer.parseInt(caja1.getText()),"","","",0);
+        }else{
+            city = new City(
+                    Integer.parseInt(caja1.getText()),
+                    caja2.getText(),
+                    caja3.getText(),
+                    caja4.getText(),
+                    Integer.parseInt(caja5.getText()));
+        }
+        return city;
+    }
+    
+    private void btnOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperacionActionPerformed
+        String operacion = btnOperacion.getText();
+        ArrayList<City> comprobacion = new ArrayList<City>();
+        CityDAO cityDAO = new CityDAO();
+        City city=null;
+        
+        switch(operacion){
+            case "Eliminar":
+                if (caja1.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null,"No se está especificando el código de la ciudad a eliminar");
+		}else{
+                    city = createCity(true);
+                    comprobacion = cityDAO.buscar("SELECT * FROM City WHERE ID = '"+caja1.getText()+"'");
+                    if (comprobacion.size()==0) {
+			JOptionPane.showMessageDialog(null,"No se pudo encontrar la ciudad a eliminar");
+                    }else{
+                        int reply = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas eliminar la ciudad?", "¡Alerta!", JOptionPane.YES_NO_OPTION);
+                        if (reply == JOptionPane.YES_OPTION) {
+                            if (cityDAO.borrarRegistro(city)) {	
+                                JOptionPane.showMessageDialog(null,"Ciudad eliminada exitosamente");
+                                limpiar();
+                            }else {	
+                                JOptionPane.showMessageDialog(null,"No se pudo eliminar la ciudad");	
+                            }
+			}
+                    }
+                }
+                break;
+            case "Modificar":
+                if(comprobarCampos()){
+                    city = createCity(false);
+                    comprobacion = cityDAO.buscar("SELECT * FROM City WHERE ID = '"+caja1.getText()+"'");
+                    if (comprobacion.size()==0) {
+			JOptionPane.showMessageDialog(null,"No se pudo encontrar la ciudad a modificar");
+                    }else {
+                        if (cityDAO.modificarRegistro(city)) {
+                            JOptionPane.showMessageDialog(null,"Ciudad modificada exitosamente");
+			}else{	
+                            JOptionPane.showMessageDialog(null,"No se pudo modificar la ciudad");	
+                        }
+                    }
+                }
+                
+                break;
+            case "Agregar":
+                if(comprobarCampos()){
+                    city = createCity(false);
+                    if (cityDAO.insertarRegistro(city)) {
+			JOptionPane.showMessageDialog(null,"Ciudad agregada exitosamente");
+                    }else {
+			JOptionPane.showMessageDialog(null,"No se pudo agregar la ciudad, quizá ya hay una con el mismo ID");
+                    }
+                }
+                break;
+            default:break;
+        }
+        
+        String sql = consulta();
+        actualizarTabla(sql);
+        
+    }//GEN-LAST:event_btnOperacionActionPerformed
 
     /**
      * @param args the command line arguments
