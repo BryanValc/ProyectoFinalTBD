@@ -4,11 +4,15 @@
  */
 package vista;
 
+import controlador.CountryLanguageDAO;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import modelo.CountryLanguage;
 
 /**
  *
@@ -167,11 +171,21 @@ public class guiCountryLanguage extends javax.swing.JFrame {
 
         comboOperacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregar", "Eliminar", "Modificar" }));
         comboOperacion.setToolTipText("Selecciona el tipo de operación");
+        comboOperacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboOperacionActionPerformed(evt);
+            }
+        });
         getContentPane().add(comboOperacion);
         comboOperacion.setBounds(240, 130, 100, 25);
 
         btnOperacion.setText("Agregar");
         btnOperacion.setToolTipText("Realizar operación");
+        btnOperacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOperacionActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnOperacion);
         btnOperacion.setBounds(240, 160, 100, 23);
 
@@ -183,7 +197,8 @@ public class guiCountryLanguage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void actualizarTabla(String sql) {
-		ResultSetTableModel modeloDatos =null;
+        
+        ResultSetTableModel modeloDatos =null;
 		try {
 			modeloDatos = new ResultSetTableModel("com.mysql.cj.jdbc.Driver","jdbc:mysql://localhost:3306/world",sql);
 		} catch (ClassNotFoundException e1) {
@@ -200,6 +215,8 @@ public class guiCountryLanguage extends javax.swing.JFrame {
 		    }
 		});
                 jScrollPane1.getViewport().add(jTable1);
+        
+		
                 
 	}
     
@@ -256,16 +273,18 @@ public class guiCountryLanguage extends javax.swing.JFrame {
             primero=false;
             sql+=("Language "+op1+" '"+op3+caja2.getText()+op3+"'");
 	}
-        if(combo1.getSelectedIndex()!=-1) {
-            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
-            primero=false;
-            sql+=("IsOfficial "+op1+" '"+op3+isOfficial+op3+"'");
-	}
-        if(!caja3.getText().equals("")) {
-            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
-            primero=false;
-            sql+=("Percentage "+op1+" '"+op3+caja3.getText()+op3+"'");
-	}
+        if(!btnOperacion.getText().contains("Modificar")){
+            if(combo1.getSelectedIndex()!=-1) {
+                if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+                primero=false;
+                sql+=("IsOfficial "+op1+" '"+op3+isOfficial+op3+"'");
+            }
+            if(!caja3.getText().equals("")) {
+                if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+                primero=false;
+                sql+=("Percentage "+op1+" '"+op3+caja3.getText()+op3+"'");
+            }
+        }
 	return sql;
     }
     
@@ -354,6 +373,120 @@ public class guiCountryLanguage extends javax.swing.JFrame {
         String sql = consulta();
         actualizarTabla(sql);
     }//GEN-LAST:event_comboFiltroMouseClicked
+
+    private void comboOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOperacionActionPerformed
+        btnOperacion.setText(""+comboOperacion.getSelectedItem());
+    }//GEN-LAST:event_comboOperacionActionPerformed
+
+    public boolean comprobarCampos(){
+        
+        if(caja1.getText().equals("")||caja1.getText().equals("   ")) {
+            JOptionPane.showMessageDialog(null,"Falta el código del país");
+            caja1.requestFocus();
+            return false;
+	}
+	if(caja2.getText().equals("")) {
+            JOptionPane.showMessageDialog(null,"Falta el lenguaje");
+            caja2.requestFocus();
+            return false;
+	}
+        if(combo1.getSelectedIndex()==-1) {
+            JOptionPane.showMessageDialog(null,"Falta especificar si es oficial o no");
+            combo1.requestFocus();
+            return false;
+	}
+        if(caja3.getText().equals("")) {
+            JOptionPane.showMessageDialog(null,"Falta indicar el porcentaje");
+            caja3.requestFocus();
+            return false;
+	}
+        return true;
+    }
+    
+    public CountryLanguage createCountryLanguage(boolean isForDeletion){
+        CountryLanguage countryLanguage=null;
+        if(isForDeletion){
+            countryLanguage=new CountryLanguage(caja1.getText(),caja2.getText(),' ',0);
+        }else{
+            char isOfficial=' ';
+            switch (""+combo1.getSelectedItem()) {
+                case "Sí":isOfficial='T';break;
+                case "No":isOfficial='F';break;
+                default:break;
+            }
+            countryLanguage = new CountryLanguage(
+                caja1.getText(),
+                caja2.getText(),
+                isOfficial,
+                Float.parseFloat(caja3.getText()));
+        }
+        return countryLanguage;
+    }
+    
+    private void btnOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperacionActionPerformed
+        String operacion = btnOperacion.getText();
+        ArrayList<CountryLanguage> comprobacion = new ArrayList<CountryLanguage>();
+        CountryLanguageDAO countryLanguageDAO = new CountryLanguageDAO();
+        CountryLanguage countryLanguage = null;
+        
+        
+        switch(operacion){
+            case "Eliminar":
+                if (caja1.getText().equals("   ")||caja1.getText().equals("   ")) {
+                    JOptionPane.showMessageDialog(null,"No se está especificando el código del país");
+		}else if(caja2.getText().equals("")){
+                    JOptionPane.showMessageDialog(null,"No se está especificando el lenguaje");
+                }else{
+                    countryLanguage = createCountryLanguage(true);
+                    comprobacion = countryLanguageDAO.buscar("SELECT * FROM CountryLanguage WHERE CountryCode = '"+caja1.getText()+"' AND Language = '"+caja2.getText()+"'");
+                    if (comprobacion.size()==0) {
+			JOptionPane.showMessageDialog(null,"No se pudo encontrar el lenguaje de país a eliminar");
+                    }else{
+                        int reply = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas eliminar el lenguaje de país?", "¡Alerta!", JOptionPane.YES_NO_OPTION);
+                        if (reply == JOptionPane.YES_OPTION) {
+                            if (countryLanguageDAO.borrarRegistro(countryLanguage)) {	
+                                JOptionPane.showMessageDialog(null,"Lenguaje eliminado exitosamente");
+                                limpiar();
+                            }else {	
+                                JOptionPane.showMessageDialog(null,"No se pudo eliminar el Lenguaje");	
+                            }
+			}
+                    }
+                }
+                break;
+            case "Modificar":
+                if(comprobarCampos()){
+                    countryLanguage = createCountryLanguage(false);
+                    comprobacion = countryLanguageDAO.buscar("SELECT * FROM CountryLanguage WHERE CountryCode = '"+caja1.getText()+"' AND Language = '"+caja2.getText()+"'");
+                    if (comprobacion.size()==0) {
+			JOptionPane.showMessageDialog(null,"No se pudo encontrar el lenguaje a modificar");
+                    }else {
+                        if (countryLanguageDAO.modificarRegistro(countryLanguage)) {
+                            JOptionPane.showMessageDialog(null,"Lenguaje de país modificado exitosamente");
+			}else{	
+                            JOptionPane.showMessageDialog(null,"No se pudo modificar el lenguaje de país");	
+                        }
+                    }
+                }
+                
+                break;
+            case "Agregar":
+                if(comprobarCampos()){
+                    countryLanguage = createCountryLanguage(false);
+                    if (countryLanguageDAO.insertarRegistro(countryLanguage)) {
+			JOptionPane.showMessageDialog(null,"Lenguaje de país agregado exitosamente");
+                    }else {
+			JOptionPane.showMessageDialog(null,"No se pudo agregar el lenguaje de país, quizá ya hay uno con el mismo ID");
+                    }
+                }
+                break;
+            default:break;
+        }
+        
+        String sql = consulta();
+        actualizarTabla(sql);
+        
+    }//GEN-LAST:event_btnOperacionActionPerformed
 
     /**
      * @param args the command line arguments

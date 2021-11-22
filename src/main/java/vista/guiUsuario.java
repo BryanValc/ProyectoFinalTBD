@@ -212,20 +212,32 @@ public class guiUsuario extends javax.swing.JFrame {
     private void comboOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOperacionActionPerformed
         btnOperacion.setText(""+comboOperacion.getSelectedItem());
     }//GEN-LAST:event_comboOperacionActionPerformed
-
+    
+    public Usuario createUsuario(boolean isForDeletion){
+        Usuario usuario=null;
+        if(isForDeletion){
+            usuario = new Usuario(caja1.getText(),"");
+        }else{
+            usuario = new Usuario(
+                caja1.getText(),
+                caja2.getText());
+        }
+        return usuario;
+    }
+    
+    
     private void btnOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperacionActionPerformed
         String operacion = btnOperacion.getText();
         ArrayList<Usuario> comprobacion = new ArrayList<Usuario>();
         UsuarioDAO usuarioDAO = new UsuarioDAO();
-        Usuario usuario = new Usuario(
-                caja1.getText(),
-                caja2.getText());
+        Usuario usuario=null;
         
         switch(operacion){
             case "Eliminar":
                 if (caja1.getText().equals("")) {
                     JOptionPane.showMessageDialog(null,"No se está especificando el ID del usuario a eliminar");
 		}else{
+                    usuario = createUsuario(true);
                     comprobacion = usuarioDAO.buscar("SELECT * FROM Usuario WHERE Username = '"+caja1.getText()+"'");
                     if (comprobacion.size()==0) {
 			JOptionPane.showMessageDialog(null,"No se pudo encontrar usuario a eliminar");
@@ -234,6 +246,7 @@ public class guiUsuario extends javax.swing.JFrame {
                         if (reply == JOptionPane.YES_OPTION) {
                             if (usuarioDAO.borrarRegistro(usuario)) {	
                                 JOptionPane.showMessageDialog(null,"Usuario eliminado exitosamente");
+                                limpiar();
                             }else {	
                                 JOptionPane.showMessageDialog(null,"No se pudo eliminar el usuario");	
                             }
@@ -243,6 +256,7 @@ public class guiUsuario extends javax.swing.JFrame {
                 break;
             case "Modificar":
                 if(comprobarCampos()){
+                    usuario = createUsuario(false);
                     comprobacion = usuarioDAO.buscar("SELECT * FROM Usuario WHERE Username = '"+caja1.getText()+"'");
                     if (comprobacion.size()==0) {
 			JOptionPane.showMessageDialog(null,"No se pudo encontrar el usuario a modificar");
@@ -258,6 +272,7 @@ public class guiUsuario extends javax.swing.JFrame {
                 break;
             case "Agregar":
                 if(comprobarCampos()){
+                    usuario = createUsuario(false);
                     if (usuarioDAO.insertarRegistro(usuario)) {
 			JOptionPane.showMessageDialog(null,"Usuario agregado exitosamente");
                     }else {
@@ -268,7 +283,9 @@ public class guiUsuario extends javax.swing.JFrame {
             default:break;
         }
         
-        limpiar();
+        String sql = consulta();
+        actualizarTabla(sql);
+        
     }//GEN-LAST:event_btnOperacionActionPerformed
 
     /**
@@ -277,7 +294,8 @@ public class guiUsuario extends javax.swing.JFrame {
     
     
     public void actualizarTabla(String sql) {
-		ResultSetTableModel modeloDatos =null;
+        
+            ResultSetTableModel modeloDatos =null;
 		try {
 			modeloDatos = new ResultSetTableModel("com.mysql.cj.jdbc.Driver","jdbc:mysql://localhost:3306/world",sql);
 		} catch (ClassNotFoundException e1) {
@@ -294,7 +312,7 @@ public class guiUsuario extends javax.swing.JFrame {
 		    }
 		});
                 jScrollPane1.getViewport().add(jTable1);
-                
+        
 	}
     
     public void obtenerRegistroTabla(){
@@ -331,21 +349,26 @@ public class guiUsuario extends javax.swing.JFrame {
             primero=false;
             sql+=("Username "+op1+" '"+op3+caja1.getText()+op3+"'");
 	}
-	if(!caja2.getText().equals("")) {
-            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
-            primero=false;
-            sql+=("Password "+op1+" '"+op3+caja2.getText()+op3+"'");
-	}
+        if(!btnOperacion.getText().contains("Modificar")){
+            if(!caja2.getText().equals("")) {
+                if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+                primero=false;
+                sql+=("Password "+op1+" '"+op3+caja2.getText()+op3+"'");
+            }
+        }
+	
 	return sql;
     }
     
     public boolean comprobarCampos() {
         if(caja1.getText().equals("")) {
             JOptionPane.showMessageDialog(null,"Falta el nombre de usuario");
+            caja1.requestFocus();
             return false;
 	}
 	if(caja2.getText().equals("")) {
             JOptionPane.showMessageDialog(null,"Falta la contraseña");
+            caja2.requestFocus();
             return false;
 	}
         return true;

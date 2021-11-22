@@ -4,11 +4,15 @@
  */
 package vista;
 
+import controlador.CountryDAO;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import modelo.Country;
 
 /**
  *
@@ -472,6 +476,11 @@ public class guiCountry extends javax.swing.JFrame {
 
         btnOperacion.setText("Agregar");
         btnOperacion.setToolTipText("Realizar operación");
+        btnOperacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOperacionActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnOperacion);
         btnOperacion.setBounds(330, 110, 100, 23);
 
@@ -552,76 +561,78 @@ public class guiCountry extends javax.swing.JFrame {
             primero=false;
             sql+=("Code "+op1+" '"+op3+caja1.getText().replaceAll(" ", "")+op3+"'");
 	}
-	if(!caja2.getText().equals("")) {
-            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
-            primero=false;
-            sql+=("Name "+op1+" '"+op3+caja2.getText()+op3+"'");
-	}
-        if(combo1.getSelectedIndex()!=-1) {
-            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
-            primero=false;
-            sql+=("Continent "+op1+" '"+op3+continent+op3+"'");
-	}
-        if(!caja3.getText().equals("")) {
-            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
-            primero=false;
-            sql+=("Region "+op1+" '"+op3+caja3.getText()+op3+"'");
-	}
-        if(!caja4.getText().equals("")) {
-            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
-            primero=false;
-            sql+=("SurfaceArea "+op1+" '"+op3+caja4.getText()+op3+"'");
-	}
-        if(!caja5.getText().equals("")&&!caja5.getText().equals("null")) {
-            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
-            primero=false;
-            sql+=("IndepYear "+op1+" '"+op3+caja5.getText()+op3+"'");
-	}
-        if(!caja6.getText().equals("")) {
-            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
-            primero=false;
-            sql+=("Population "+op1+" '"+op3+caja6.getText()+op3+"'");
-	}
-        if(!caja7.getText().equals("")&&!caja7.getText().equals("null")) {
-            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
-            primero=false;
-            sql+=("LifeExpectancy "+op1+" '"+op3+caja7.getText()+op3+"'");
-	}
-        if(!caja8.getText().equals("")) {
-            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
-            primero=false;
-            sql+=("GNP "+op1+" '"+op3+caja8.getText()+op3+"'");
-	}
-        if(!caja9.getText().equals("")&&!caja9.getText().equals("null")) {
-            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
-            primero=false;
-            sql+=("GNPOld "+op1+" '"+op3+caja9.getText()+op3+"'");
-	}
-        if(!caja10.getText().equals("")) {
-            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
-            primero=false;
-            sql+=("LocalName "+op1+" '"+op3+caja10.getText()+op3+"'");
-	}
-        if(!caja11.getText().equals("")) {
-            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
-            primero=false;
-            sql+=("GovernmentForm "+op1+" '"+op3+caja11.getText()+op3+"'");
-	}
-        if(!caja12.getText().equals("")) {
-            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
-            primero=false;
-            sql+=("HeadOfState "+op1+" '"+op3+caja12.getText()+op3+"'");
-	}
-        if(!caja13.getText().equals("")&&!caja13.getText().equals("null")) {
-            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
-            primero=false;
-            sql+=("Capital "+op1+" '"+op3+caja13.getText()+op3+"'");
-	}
-        if(!caja14.getText().equals("")&&!caja14.getText().equals("  ")) {
-            if (!primero) {sql+=op2;}else {sql+="WHERE ";}
-            primero=false;
-            sql+=("Code2 "+op1+" '"+op3+caja14.getText().replaceAll(" ", "")+op3+"'");
-	}
+        if(!btnOperacion.getText().contains("Modificar")){
+            if(!caja2.getText().equals("")) {
+                if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+                primero=false;
+                sql+=("Name "+op1+" '"+op3+caja2.getText()+op3+"'");
+            }
+            if(combo1.getSelectedIndex()!=-1) {
+                if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+                primero=false;
+                sql+=("Continent "+op1+" '"+op3+continent+op3+"'");
+            }
+            if(!caja3.getText().equals("")) {
+                if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+                primero=false;
+                sql+=("Region "+op1+" '"+op3+caja3.getText()+op3+"'");
+            }
+            if(!caja4.getText().equals("")) {
+                if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+                primero=false;
+                sql+=("SurfaceArea "+op1+" '"+op3+caja4.getText()+op3+"'");
+            }
+            if(!caja5.getText().equals("")&&!caja5.getText().equals("null")) {
+                if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+                primero=false;
+                sql+=("IndepYear "+op1+" '"+op3+caja5.getText()+op3+"'");
+            }
+            if(!caja6.getText().equals("")) {
+                if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+                primero=false;
+                sql+=("Population "+op1+" '"+op3+caja6.getText()+op3+"'");
+            }
+            if(!caja7.getText().equals("")&&!caja7.getText().equals("null")) {
+                if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+                primero=false;
+                sql+=("LifeExpectancy "+op1+" '"+op3+caja7.getText()+op3+"'");
+            }
+            if(!caja8.getText().equals("")) {
+                if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+                primero=false;
+                sql+=("GNP "+op1+" '"+op3+caja8.getText()+op3+"'");
+            }
+            if(!caja9.getText().equals("")&&!caja9.getText().equals("null")) {
+                if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+                primero=false;
+                sql+=("GNPOld "+op1+" '"+op3+caja9.getText()+op3+"'");
+            }
+            if(!caja10.getText().equals("")) {
+                if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+                primero=false;
+                sql+=("LocalName "+op1+" '"+op3+caja10.getText()+op3+"'");
+            }
+            if(!caja11.getText().equals("")) {
+                if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+                primero=false;
+                sql+=("GovernmentForm "+op1+" '"+op3+caja11.getText()+op3+"'");
+            }
+            if(!caja12.getText().equals("")) {
+                if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+                primero=false;
+                sql+=("HeadOfState "+op1+" '"+op3+caja12.getText()+op3+"'");
+            }
+            if(!caja13.getText().equals("")&&!caja13.getText().equals("null")) {
+                if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+                primero=false;
+                sql+=("Capital "+op1+" '"+op3+caja13.getText()+op3+"'");
+            }
+            if(!caja14.getText().equals("")&&!caja14.getText().equals("  ")) {
+                if (!primero) {sql+=op2;}else {sql+="WHERE ";}
+                primero=false;
+                sql+=("Code2 "+op1+" '"+op3+caja14.getText().replaceAll(" ", "")+op3+"'");
+            }
+        }
 	return sql;
     }
     
@@ -863,7 +874,7 @@ public class guiCountry extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void comboOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOperacionActionPerformed
-        // TODO add your handling code here:
+        btnOperacion.setText(""+comboOperacion.getSelectedItem());
     }//GEN-LAST:event_comboOperacionActionPerformed
 
     private void caja1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caja1KeyReleased
@@ -944,6 +955,176 @@ public class guiCountry extends javax.swing.JFrame {
         String sql = consulta();
         actualizarTabla(sql);
     }//GEN-LAST:event_comboFiltroMouseClicked
+
+    public boolean comprobarCampos(){
+        if(caja1.getText().equals("")||caja1.getText().equals("   ")) {
+            JOptionPane.showMessageDialog(null,"Falta el código del país");
+            caja1.requestFocus();
+            return false;
+	}
+	if(caja2.getText().equals("")) {
+            JOptionPane.showMessageDialog(null,"Falta el nombre");
+            caja2.requestFocus();
+            return false;
+	}
+        if(combo1.getSelectedIndex()==-1) {
+            JOptionPane.showMessageDialog(null,"Falta especificar el continente");
+            combo1.requestFocus();
+            return false;
+	}
+        if(caja3.getText().equals("")) {
+            JOptionPane.showMessageDialog(null,"Falta especificar la región");
+            caja3.requestFocus();
+            return false;
+	}
+        if(caja4.getText().equals("")||caja4.getText().equals("null")) {
+            JOptionPane.showMessageDialog(null,"Falta ingresar el área de la superficie");
+            caja4.requestFocus();
+            return false;
+	}
+        if(caja5.getText().equals("")||caja5.getText().equals("null")) {
+            JOptionPane.showMessageDialog(null,"Falta el año de independencia");
+            caja5.requestFocus();
+            return false;
+	}
+        if(caja6.getText().equals("")||caja6.getText().equals("null")) {
+            JOptionPane.showMessageDialog(null,"Falta ingresar la población");
+            caja6.requestFocus();
+            return false;
+	}
+        if(caja7.getText().equals("")||caja7.getText().equals("null")) {
+            JOptionPane.showMessageDialog(null,"Falta especificar la esperanza de vida");
+            caja7.requestFocus();
+            return false;
+	}
+        if(caja8.getText().equals("")||caja8.getText().equals("null")) {
+            JOptionPane.showMessageDialog(null,"Falta ingresar el producto nacional bruto");
+            caja8.requestFocus();
+            return false;
+	}
+        if(caja9.getText().equals("")||caja9.getText().equals("null")) {
+            JOptionPane.showMessageDialog(null,"Falta ingresar el antiguo producto nacional bruto");
+            caja9.requestFocus();
+            return false;
+	}
+        if(caja10.getText().equals("")) {
+            JOptionPane.showMessageDialog(null,"Falta ingresar el nombre local");
+            caja10.requestFocus();
+            return false;
+	}
+        if(caja11.getText().equals("")) {
+            JOptionPane.showMessageDialog(null,"Falta especificar la forma de gobierno");
+            caja11.requestFocus();
+            return false;
+	}
+        if(caja12.getText().equals("")) {
+            JOptionPane.showMessageDialog(null,"Falta indicar quién es la cabeza de estado");
+            caja12.requestFocus();
+            return false;
+	}
+        if(caja13.getText().equals("")||caja13.getText().equals("null")) {
+            JOptionPane.showMessageDialog(null,"Falta indicar el capital");
+            caja13.requestFocus();
+            return false;
+	}
+        if(caja14.getText().equals("")||caja14.getText().equals("  ")) {
+            JOptionPane.showMessageDialog(null,"Falta el segundo código del país");
+            caja14.requestFocus();
+            return false;
+	}
+        
+        
+        return true;
+    }
+    
+    public Country createCountry(boolean isForDeletion){
+        Country country=null;
+        if(isForDeletion){
+            country = new Country(caja1.getText(),"","","",0,0,0,0,0,0,"","","",0,"");
+        }else{
+            country = new Country(
+                caja1.getText(),
+                caja2.getText(),
+                (""+combo1.getSelectedItem()),
+                caja3.getText(),
+                Float.parseFloat(caja4.getText()),
+                Integer.parseInt(caja5.getText()),
+                Integer.parseInt(caja6.getText()),
+                Float.parseFloat(caja7.getText()),
+                Float.parseFloat(caja8.getText()),
+                Float.parseFloat(caja9.getText()),
+                caja10.getText(),
+                caja11.getText(),
+                caja12.getText(),
+                Integer.parseInt(caja13.getText()),
+                caja14.getText());
+        }
+        
+        return country;
+    }
+    
+    private void btnOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperacionActionPerformed
+        String operacion = btnOperacion.getText();
+        ArrayList<Country> comprobacion = new ArrayList<Country>();
+        CountryDAO countryDAO = new CountryDAO();
+        Country country=null;
+        
+        
+        switch(operacion){
+            case "Eliminar":
+                if (caja1.getText().equals("")||caja1.getText().equals("   ")) {
+                    JOptionPane.showMessageDialog(null,"No se está especificando el código del país a eliminar");
+		}else{
+                    country = createCountry(true);
+                    comprobacion = countryDAO.buscar("SELECT * FROM Country WHERE Code = '"+caja1.getText()+"'");
+                    if (comprobacion.size()==0) {
+			JOptionPane.showMessageDialog(null,"No se pudo encontrar país a eliminar");
+                    }else{
+                        int reply = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas eliminar el país?", "¡Alerta!", JOptionPane.YES_NO_OPTION);
+                        if (reply == JOptionPane.YES_OPTION) {
+                            if (countryDAO.borrarRegistro(country)) {	
+                                JOptionPane.showMessageDialog(null,"País eliminado exitosamente");
+                                limpiar();
+                            }else {	
+                                JOptionPane.showMessageDialog(null,"No se pudo eliminar el país");	
+                            }
+			}
+                    }
+                }
+                break;
+            case "Modificar":
+                if(comprobarCampos()){
+                    country = createCountry(false);
+                    comprobacion = countryDAO.buscar("SELECT * FROM Country WHERE Code = '"+caja1.getText()+"'");
+                    if (comprobacion.size()==0) {
+			JOptionPane.showMessageDialog(null,"No se pudo encontrar el país a modificar");
+                    }else {
+                        if (countryDAO.modificarRegistro(country)) {
+                            JOptionPane.showMessageDialog(null,"País modificado exitosamente");
+			}else{	
+                            JOptionPane.showMessageDialog(null,"No se pudo modificar el país");	
+                        }
+                    }
+                }
+                
+                break;
+            case "Agregar":
+                if(comprobarCampos()){
+                    country = createCountry(false);
+                    if (countryDAO.insertarRegistro(country)) {
+			JOptionPane.showMessageDialog(null,"País agregado exitosamente");
+                    }else {
+			JOptionPane.showMessageDialog(null,"No se pudo agregar el país, quizá ya hay uno con el mismo ID");
+                    }
+                }
+                break;
+            default:break;
+        }
+        
+        String sql = consulta();
+        actualizarTabla(sql);
+        
+    }//GEN-LAST:event_btnOperacionActionPerformed
 
     /**
      * @param args the command line arguments
