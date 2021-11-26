@@ -126,6 +126,11 @@ public class guiUsuario extends javax.swing.JFrame {
                 comboFiltroMouseClicked(evt);
             }
         });
+        comboFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboFiltroActionPerformed(evt);
+            }
+        });
         getContentPane().add(comboFiltro);
         comboFiltro.setBounds(130, 30, 150, 25);
 
@@ -287,6 +292,10 @@ public class guiUsuario extends javax.swing.JFrame {
         actualizarTabla(sql);
         
     }//GEN-LAST:event_btnOperacionActionPerformed
+
+    private void comboFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboFiltroActionPerformed
 
     /**
      * @param args the command line arguments
