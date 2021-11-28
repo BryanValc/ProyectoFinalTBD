@@ -12,7 +12,7 @@ public class Country {
     String code;
     String name;
     String continent;
-    String region;
+    String region; 
     float surfaceArea;
     int indepYear;
     int population;

@@ -7,9 +7,9 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Usuario {
+
     @NonNull
     @PrimaryKey
-    @ColumnInfo(name="nombre")
     private String nombre;
 
     @NonNull
