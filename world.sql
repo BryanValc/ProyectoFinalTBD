@@ -119,3 +119,15 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2021-10-05 13:19:18
+
+CREATE TABLE Usuario(username VARCHAR(20) PRIMARY KEY, password VARCHAR(20));
+
+CREATE TABLE `countrylanguageBkp` (
+  `CountryCode` char(3) NOT NULL DEFAULT '',
+  `Language` char(30) NOT NULL DEFAULT '',
+  `IsOfficial` enum('T','F') NOT NULL DEFAULT 'F',
+  `Percentage` float(4,1) NOT NULL DEFAULT '0.0',
+  PRIMARY KEY (`CountryCode`,`Language`),
+  KEY `CountryCode` (`CountryCode`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
