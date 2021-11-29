@@ -12,7 +12,24 @@ import Entidades.*;
 
 public abstract class WorldBD extends RoomDatabase {
 
+    public abstract UsuarioDAO usuarioDAO();
+    public abstract CountryDAO countryDAO();
+    public abstract CityDAO cityDAO();
+    public abstract CountryLanguageDAO countryLanguageDAO();
 
+    private static WorldBD INSTANCE;
+
+    public static WorldBD getAppDatabase(Context context){
+        if(INSTANCE==null){
+            INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                    WorldBD.class, "@world").build();
+        }
+        return INSTANCE;
+    }
+
+    public static void destroyInstance(){
+        INSTANCE=null;
+    }
 
 
 }
