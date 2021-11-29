@@ -10,40 +10,40 @@ public class Usuario {
 
     @NonNull
     @PrimaryKey
-    private String nombre;
+    private String username;
 
     @NonNull
-    @ColumnInfo(name="contraseña")
-    private String contraseña;
+    @ColumnInfo(name="password")
+    private String password;
 
-    public Usuario(@NonNull String nombre, @NonNull String contraseña) {
-        this.nombre = nombre;
-        this.contraseña = contraseña;
-    }
-
-    @NonNull
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(@NonNull String nombre) {
-        this.nombre = nombre;
+    public Usuario(@NonNull String username, @NonNull String password) {
+        this.username = username;
+        this.password = password;
     }
 
     @NonNull
-    public String getContraseña() {
-        return contraseña;
+    public String getUsername() {
+        return username;
     }
 
-    public void setContraseña(@NonNull String contraseña) {
-        this.contraseña = contraseña;
+    public void setUsername(@NonNull String username) {
+        this.username = username;
+    }
+
+    @NonNull
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(@NonNull String password) {
+        this.password = password;
     }
 
     @Override
     public String toString() {
         return "Usuario{" +
-                "nombre='" + nombre + '\'' +
-                ", contraseña='" + contraseña + '\'' +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }
