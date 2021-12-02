@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">appAndroid</string>
+    <string name="lbl_usuario">Ingresa tu usuario</string>
+    <string name="lbl_contra">Ingresa tu contraseña</string>
+    <string name="btn_ingresar">Acceder</string>
+    <string name="btn_registro">Registrarse</string>
+    <string name="btn_Agregar">Agregar</string>
+    <string name="btn_Eliminar">Eliminar</string>
+    <string name="btn_Modificar">Modificar</string>
+    <string name="btn_Consultar">Consultar</string>
+    <string name="btn_Salir">Salir</string>
+
+    <string name="lbl_id">ID de ciudad</string>
+    <string name="lbl_name">Nombre de ciudad</string>
+    <string name="lbl_countryCode">Código de país</string>
+    <string name="lbl_district">Distrito</string>
+    <string name="lbl_population">Población</string>
+
+
 </resources>
