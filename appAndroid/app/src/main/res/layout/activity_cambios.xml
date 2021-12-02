@@ -5,6 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <EditText
+        android:id="@+id/caja_countryCode3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="11dp"
+        android:ems="10"
+        android:inputType="textCapSentences"
+        android:maxLength="3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="19dp"
+        android:text="@string/lbl_countryCode"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/caja_name3" />
+
     <Button
         android:id="@+id/btn_modificar2"
         android:layout_width="206dp"
@@ -45,11 +68,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="164dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:text="@string/lbl_district"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/caja_name3" />
+        app:layout_constraintTop_toBottomOf="@+id/caja_countryCode3" />
 
     <EditText
         android:id="@+id/caja_district3"
@@ -91,7 +114,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="136dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="16dp"
         android:text="@string/lbl_id"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"

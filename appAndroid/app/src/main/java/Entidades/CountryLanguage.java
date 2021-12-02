@@ -13,7 +13,7 @@ public class CountryLanguage {
     private String countryCode;
 
     @NonNull
-    @PrimaryKey
+    @ColumnInfo(name="language")
     private String language;
 
     @NonNull

@@ -11,7 +11,7 @@
         android:layout_height="76dp"
         android:layout_marginStart="100dp"
         android:layout_marginTop="23dp"
-        android:onClick="abrir_activities"
+        android:onClick="borrar"
         android:text="@string/btn_Eliminar"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"

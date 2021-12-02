@@ -6,6 +6,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
 
 import BaseDatos.WorldBD;
 import Entidades.City;
@@ -15,7 +16,7 @@ public class ActivityAltas extends AppCompatActivity {
     EditText caja_id, caja_name, caja_countryCode, caja_district, caja_population;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_altas);
         caja_id = findViewById(R.id.caja_id);
@@ -26,19 +27,19 @@ public class ActivityAltas extends AppCompatActivity {
     }
 
     public boolean comprobarCampos(){
-        if (caja_id.getText().equals("")){
+        if (caja_id.getText().toString().isEmpty()){
             Toast.makeText(getBaseContext(),"Falta el id",Toast.LENGTH_LONG).show();
             return false;
-        } else if(caja_name.getText().equals("")){
+        } else if(caja_name.getText().toString().isEmpty()){
             Toast.makeText(getBaseContext(),"Falta el nombre",Toast.LENGTH_LONG).show();
             return false;
-        } else if(caja_countryCode.getText().equals("")){
+        } else if(caja_countryCode.getText().toString().isEmpty()){
             Toast.makeText(getBaseContext(),"Falta el código de país",Toast.LENGTH_LONG).show();
             return false;
-        } else if(caja_district.getText().equals("")){
+        } else if(caja_district.getText().toString().isEmpty()){
             Toast.makeText(getBaseContext(),"Falta el distrito",Toast.LENGTH_LONG).show();
             return false;
-        } else if(caja_population.getText().equals("")){
+        } else if(caja_population.getText().toString().isEmpty()){
             Toast.makeText(getBaseContext(),"Falta la población",Toast.LENGTH_LONG).show();
             return false;
         }
@@ -53,9 +54,23 @@ public class ActivityAltas extends AppCompatActivity {
                 @Override
                 public void run() {
 
-                    City city = new City();
+                    City city = new City(
+                            Integer.parseInt(caja_id.getText().toString()),
+                            caja_name.getText().toString(),
+                            caja_countryCode.getText().toString(),
+                            caja_district.getText().toString(),
+                            Integer.parseInt(caja_population.getText().toString())
+                    );
 
-                    conexionBD.cityDAO().insertarCity();
+                    conexionBD.cityDAO().insertarCity(city);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getBaseContext(),"Agregada con éxito",Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+
 
                 }
             }).start();
