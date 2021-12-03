@@ -22,7 +22,7 @@ public class ActivityBajas extends AppCompatActivity {
         id=findViewById(R.id.caja_id2);
     }
 
-    public void busquedaBajas(View v){
+    /*public void busquedaBajas(View v){
 
         if(!id.getText().toString().isEmpty()){
             new Thread(new Runnable() {
@@ -44,7 +44,7 @@ public class ActivityBajas extends AppCompatActivity {
             }).start();
         }
 
-    }
+    }*/
 
     public void borrar(View v){
         if(!id.getText().toString().isEmpty()){

@@ -28,6 +28,11 @@ public interface CityDAO {
     public List<City> optenerTodos();
 
     @Query("SELECT * FROM City WHERE id LIKE :i")
-    public City buscarPorId(int i);
+    public List<City> buscarPorId(int i);
 
+    @Query("SELECT * FROM City WHERE id LIKE :i")
+    public City buscarUnoPorId(int i);
+
+    @Query("SELECT * FROM City WHERE id LIKE :i")
+    public List<City> busquedaFiltrada(String i);
 }

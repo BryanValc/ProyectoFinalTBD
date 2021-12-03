@@ -51,7 +51,7 @@ public class ActivityCambios extends AppCompatActivity {
                 public void run() {
                     City city=null;
                     WorldBD conexionBD=WorldBD.getAppDatabase(getBaseContext());
-                    city=conexionBD.cityDAO().buscarPorId(Integer.parseInt(caja_id.getText().toString()));
+                    city=conexionBD.cityDAO().buscarUnoPorId(Integer.parseInt(caja_id.getText().toString()));
                     if(city!=null){
                         int id=Integer.parseInt(caja_id.getText().toString());
                         String name=caja_name.getText().toString();
