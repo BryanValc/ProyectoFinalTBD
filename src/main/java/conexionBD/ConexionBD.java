@@ -82,6 +82,20 @@ public class ConexionBD {
         return false;
     }
     
+    public static int llamada(){
+        try{
+            String simpleProc = "{ sp_CantidadDePaises(?) }";
+            CallableStatement cs = conexion.prepareCall(simpleProc);
+            cs.registerOutParameter(1, java.sql.Types.INTEGER);
+            cs.execute();
+            int param1 = cs.getInt(1);
+            return param1;
+        } catch (Exception ex) {
+            System.out.printf("Error al ejecutar la llamada");
+	}
+        return 0;
+    }
+    
     public static ResultSet ejecutarConsulta(String sql) {
 	try {
             String consulta = sql;

@@ -53,6 +53,12 @@ public class ActivityBajas extends AppCompatActivity {
                 public void run() {
                     WorldBD conexionBD = WorldBD.getAppDatabase(getBaseContext());
                     conexionBD.cityDAO().eliminarPorId(Integer.parseInt(id.getText().toString()));
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getBaseContext(), "Ciudad eliminada con éxito", Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }
             }).start();
         }

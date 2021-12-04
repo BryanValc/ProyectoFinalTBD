@@ -52,29 +52,35 @@ public class ActivityAltas extends AppCompatActivity {
 
     public void agregarCity(View v){
         if(comprobarCampos()){
-            WorldBD conexionBD = WorldBD.getAppDatabase(getBaseContext());
+            City city = new City(
+                    Integer.parseInt(caja_id.getText().toString()),
+                    caja_name.getText().toString(),
+                    caja_countryCode.getText().toString(),
+                    caja_district.getText().toString(),
+                    Integer.parseInt(caja_population.getText().toString())
+            );
+
 
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-
-                    City city = new City(
-                            Integer.parseInt(caja_id.getText().toString()),
-                            caja_name.getText().toString(),
-                            caja_countryCode.getText().toString(),
-                            caja_district.getText().toString(),
-                            Integer.parseInt(caja_population.getText().toString())
-                    );
-
-                    conexionBD.cityDAO().insertarCity(city);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getBaseContext(),"Agregada con éxito",Toast.LENGTH_LONG).show();
-                        }
-                    });
-
-
+                    WorldBD conexionBD = WorldBD.getAppDatabase(getBaseContext());
+                    try{
+                        conexionBD.cityDAO().insertarCity(city);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getBaseContext(),"Agregada con éxito",Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }catch (Exception e){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getBaseContext(),"El registro agregado ya existe",Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
 
                 }
             }).start();

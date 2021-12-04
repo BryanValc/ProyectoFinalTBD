@@ -137,3 +137,18 @@ INSERT INTO `countrylanguageBkp` SET CountryCode=old.CountryCode, Language=old.L
 END //
 DELIMITER ; 
 
+SET GLOBAL cantidad=100;
+set PERSIST cantidad=239;
+
+
+DELIMITER //
+CREATE PROCEDURE sp_CantidadDePaises(OUT cnt int)
+BEGIN
+    select count(*) into cnt from Country;
+END //
+DELIMITER ;
+
+
+
+CALL sp_CantidadDePaises(@cantidad);
+Select @cantidad as `cantidad`;

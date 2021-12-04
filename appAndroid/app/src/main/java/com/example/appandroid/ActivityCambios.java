@@ -69,6 +69,14 @@ public class ActivityCambios extends AppCompatActivity {
                                 Toast.makeText(getBaseContext(),"La ciudad fue actualizada",Toast.LENGTH_LONG).show();
                             }
                         });
+                    }else{
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getBaseContext(),"La ciudad no existe",Toast.LENGTH_LONG).show();
+
+                            }
+                        });
                     }
                 }
             }).start();

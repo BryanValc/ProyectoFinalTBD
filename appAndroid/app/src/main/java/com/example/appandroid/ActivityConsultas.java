@@ -26,7 +26,7 @@ import Entidades.City;
 public class ActivityConsultas extends AppCompatActivity {
 
     RecyclerView recycler;
-    RecyclerView.Adapter adaper;
+    RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
     List<City> e;
     EditText id;
@@ -37,12 +37,10 @@ public class ActivityConsultas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultas);
 
-        String[] datos = {""};
         recycler=findViewById(R.id.recyclerView1);
         recycler.setHasFixedSize(true);
         layoutManager=new LinearLayoutManager(this);
         recycler.setLayoutManager(layoutManager);
-        int[] c = new int[1];
         id = findViewById(R.id.caja_id4);
 
         id.addTextChangedListener(new TextWatcher() {
@@ -58,22 +56,21 @@ public class ActivityConsultas extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                String[] datos = {""};
+                int[] c = new int[1];
                 if (!id.getText().toString().isEmpty()) {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
                             WorldBD conexionBD=WorldBD.getAppDatabase(getBaseContext());
                             e=null;
-                            e=conexionBD.cityDAO().buscarPorId(Integer.parseInt(id.getText().toString()));
+                            e=conexionBD.cityDAO().busquedaFiltrada("%"+id.getText().toString()+"%");
                             c[0]=e.size();
-                            datos[0]="";
                             for(int i=0;i<c[0];i++){
-                                System.out.println(i+"--> "+e.get(i).toString());
-                                datos[0]=datos[0]+e.get(i).toString()+"/";
+                                datos[0]=datos[0]+e.get(i)+"/";
                             }
-                            System.out.println("Datos----->"+datos[0]);
-                            adaper=new AdaptadorRegistros(datos[0].split("/"));
-                            recycler.setAdapter(adaper);
+                            adapter=new AdaptadorRegistros(datos[0].split("/"));
+                            recycler.setAdapter(adapter);
 
                         }
                     }).start();
@@ -84,12 +81,14 @@ public class ActivityConsultas extends AppCompatActivity {
                             WorldBD conexionBD = WorldBD.getAppDatabase(getBaseContext());
                             e=conexionBD.cityDAO().optenerTodos();
                             c[0]=e.size();
-                            for(int i=0;i<c[0];i++){
-                                datos[0]=datos[0]+e.get(i).toString()+"/";
+                            for(City a:e){
+                                Log.d("datos->",a.toString());
                             }
-                            System.out.println("Datos----->"+datos[0]);
-                            adaper=new AdaptadorRegistros(datos[0].split("/"));
-                            recycler.setAdapter(adaper);
+                            for(int i=0;i<c[0];i++){
+                                datos[0]=datos[0]+e.get(i)+"/";
+                            }
+                            adapter=new AdaptadorRegistros(datos[0].split("/"));
+                            recycler.setAdapter(adapter);
                         }
                     }).start();
                 }
@@ -118,14 +117,9 @@ public class ActivityConsultas extends AppCompatActivity {
             }
         }).start();*/
 
-        recycler=findViewById(R.id.recyclerView1);
-        recycler.setHasFixedSize(true);
-        layoutManager=new LinearLayoutManager(this);
-        recycler.setLayoutManager(layoutManager);
-
     }
 
-    public void busqueda (){
+    /*public void busqueda (){
         String[] datos = {""};
         recycler=findViewById(R.id.recyclerView1);
 
@@ -146,8 +140,8 @@ public class ActivityConsultas extends AppCompatActivity {
                         datos[0] = datos[0]+e.get(i).toString()+"/";
                     }
                     System.out.println("Datos----->"+datos[0]);
-                    adaper=new AdaptadorRegistros(datos[0].split("/"));
-                    recycler.setAdapter(adaper);
+                    adapter=new AdaptadorRegistros(datos[0].split("/"));
+                    recycler.setAdapter(adapter);
                 }
             }).start();
 
@@ -162,14 +156,14 @@ public class ActivityConsultas extends AppCompatActivity {
                         datos[0] = datos[0]+e.get(i).toString()+"/";
                     }
                     System.out.println("Datos----->"+datos[0]);
-                    adaper=new AdaptadorRegistros(datos[0].split("/"));
-                    recycler.setAdapter(adaper);
+                    adapter=new AdaptadorRegistros(datos[0].split("/"));
+                    recycler.setAdapter(adapter);
                 }
             }).start();
 
 
         }
-    }
+    }*/
 
 }
 
