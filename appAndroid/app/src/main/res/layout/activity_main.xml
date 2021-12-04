@@ -39,7 +39,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/caja_username"
         android:layout_width="212dp"
         android:layout_height="44dp"
         android:layout_marginStart="96dp"
@@ -50,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/lblNombre" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/caja_password"
         android:layout_width="214dp"
         android:layout_height="57dp"
         android:layout_marginStart="100dp"
@@ -69,5 +69,5 @@
         android:onClick="abrirMenu"
         android:text="@string/btn_ingresar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/caja_password" />
 </androidx.constraintlayout.widget.ConstraintLayout>
