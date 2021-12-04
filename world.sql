@@ -127,7 +127,13 @@ CREATE TABLE `countrylanguageBkp` (
   `Language` char(30) NOT NULL DEFAULT '',
   `IsOfficial` enum('T','F') NOT NULL DEFAULT 'F',
   `Percentage` float(4,1) NOT NULL DEFAULT '0.0',
-  PRIMARY KEY (`CountryCode`,`Language`),
-  KEY `CountryCode` (`CountryCode`)
+  `DeletionDate` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DELIMITER //
+CREATE TRIGGER eliminarCiudad BEFORE DELETE ON `countrylanguage` FOR EACH ROW
+BEGIN
+INSERT INTO `countrylanguageBkp` SET CountryCode=old.CountryCode, Language=old.Language, IsOfficial=old.IsOfficial, Percentage=old.Percentage;
+END //
+DELIMITER ; 
 
