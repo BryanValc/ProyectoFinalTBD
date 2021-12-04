@@ -43,6 +43,7 @@ public class ActivityConsultas extends AppCompatActivity {
         layoutManager=new LinearLayoutManager(this);
         recycler.setLayoutManager(layoutManager);
         int[] c = new int[1];
+        id = findViewById(R.id.caja_id4);
 
         id.addTextChangedListener(new TextWatcher() {
             @Override

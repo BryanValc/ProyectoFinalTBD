@@ -42,7 +42,10 @@
                           <Component id="jButton4" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton5" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jButton5" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="btn_guiConsultaMultitabla" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                   <Component id="jButton6" alignment="0" max="32767" attributes="0"/>
               </Group>
@@ -64,7 +67,10 @@
                   <Component id="jButton5" min="-2" pref="150" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_guiConsultaMultitabla" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jButton6" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -163,10 +169,18 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cantidad de dominio por idioma"/>
+        <Property name="text" type="java.lang.String" value="Gr&#xe1;fica cantidad de dominio por idioma"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_guiConsultaMultitabla">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tabla dominio de idioma"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_guiConsultaMultitablaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

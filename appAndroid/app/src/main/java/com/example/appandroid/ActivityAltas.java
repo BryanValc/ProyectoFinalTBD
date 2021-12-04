@@ -30,16 +30,20 @@ public class ActivityAltas extends AppCompatActivity {
         if (caja_id.getText().toString().isEmpty()){
             Toast.makeText(getBaseContext(),"Falta el id",Toast.LENGTH_LONG).show();
             return false;
-        } else if(caja_name.getText().toString().isEmpty()){
+        }
+        if(caja_name.getText().toString().isEmpty()){
             Toast.makeText(getBaseContext(),"Falta el nombre",Toast.LENGTH_LONG).show();
             return false;
-        } else if(caja_countryCode.getText().toString().isEmpty()){
+        }
+        if(caja_countryCode.getText().toString().isEmpty()){
             Toast.makeText(getBaseContext(),"Falta el código de país",Toast.LENGTH_LONG).show();
             return false;
-        } else if(caja_district.getText().toString().isEmpty()){
+        }
+        if(caja_district.getText().toString().isEmpty()){
             Toast.makeText(getBaseContext(),"Falta el distrito",Toast.LENGTH_LONG).show();
             return false;
-        } else if(caja_population.getText().toString().isEmpty()){
+        }
+        if(caja_population.getText().toString().isEmpty()){
             Toast.makeText(getBaseContext(),"Falta la población",Toast.LENGTH_LONG).show();
             return false;
         }

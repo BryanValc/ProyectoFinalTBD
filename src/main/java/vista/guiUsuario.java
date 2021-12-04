@@ -72,10 +72,7 @@ public class guiUsuario extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(10, 11, 70, 14);
 
-        try {
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+       
         caja1.setToolTipText("Introduce el nombre de usuario");
         caja1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -93,10 +90,7 @@ public class guiUsuario extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(10, 57, 90, 14);
 
-        try {
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+       
         caja2.setToolTipText("Introduce la contraseña del usuario");
         caja2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {

@@ -146,10 +146,7 @@ public class guiCountry extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(480, 40, 80, 14);
 
-        try {
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        
         caja3.setToolTipText("Introduce la región en la que se encuentra el país");
         caja3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,10 +186,7 @@ public class guiCountry extends javax.swing.JFrame {
         getContentPane().add(caja4);
         caja4.setBounds(600, 70, 101, 25);
 
-        try {
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        
         caja5.setToolTipText("Introduce el año de independencia");
         caja5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,10 +209,7 @@ public class guiCountry extends javax.swing.JFrame {
         getContentPane().add(jLabel6);
         jLabel6.setBounds(420, 240, 150, 14);
 
-        try {
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        
         caja6.setToolTipText("Introduce la cantidad de la población");
         caja6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,10 +254,7 @@ public class guiCountry extends javax.swing.JFrame {
         getContentPane().add(jLabel8);
         jLabel8.setBounds(10, 230, 170, 14);
 
-        try {
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        
         caja8.setToolTipText("Introduce el producto anual bruto");
         caja8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -289,10 +277,7 @@ public class guiCountry extends javax.swing.JFrame {
         getContentPane().add(jLabel9);
         jLabel9.setBounds(10, 260, 220, 14);
 
-        try {
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        
         caja9.setToolTipText("Introduce el producto bruto anual anterior");
         caja9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -315,10 +300,7 @@ public class guiCountry extends javax.swing.JFrame {
         getContentPane().add(jLabel10);
         jLabel10.setBounds(10, 70, 100, 14);
 
-        try {
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        
         caja10.setToolTipText("Introduce el nombre local");
         caja10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -341,10 +323,7 @@ public class guiCountry extends javax.swing.JFrame {
         getContentPane().add(jLabel11);
         jLabel11.setBounds(420, 150, 140, 14);
 
-        try {
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        
         caja11.setToolTipText("Introduce la forma de gobierno");
         caja11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -389,10 +368,7 @@ public class guiCountry extends javax.swing.JFrame {
         getContentPane().add(jLabel13);
         jLabel13.setBounds(420, 210, 150, 14);
 
-        try {
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        
         caja13.setToolTipText("Introduce el nombre de la capìtal");
         caja13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
