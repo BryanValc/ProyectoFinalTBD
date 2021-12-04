@@ -12,6 +12,8 @@ import java.util.logging.Logger;
 //import javax.servlet.*;
 import java.awt.Desktop;
 import conexionBD.ConexionBD;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -53,6 +55,20 @@ public class Interfaz extends javax.swing.JFrame {
      */
     public Interfaz() {
         initComponents();
+        ConexionBD.Transaccion("START TRANSACTION;");
+        addWindowListener(new WindowAdapter() {
+        public void windowClosing(WindowEvent we) {
+            
+        int result = JOptionPane.showConfirmDialog(null,
+            "¿Quieres aplicar los cambios?", "Cerrando programa",
+            JOptionPane.YES_NO_OPTION);
+        if(result == JOptionPane.YES_OPTION){
+            ConexionBD.Transaccion("COMMIT;");
+        }else{
+            ConexionBD.Transaccion("ROLLBACK;");
+        }
+      }
+    });
     }
 
     /**

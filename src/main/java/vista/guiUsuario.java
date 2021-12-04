@@ -4,6 +4,7 @@
  */
 package vista;
 
+import conexionBD.ConexionBD;
 import controlador.UsuarioDAO;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
@@ -50,6 +51,7 @@ public class guiUsuario extends javax.swing.JFrame {
         comboFiltro = new javax.swing.JComboBox<>();
         comboOperacion = new javax.swing.JComboBox<>();
         btnOperacion = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setTitle("Formulario usuario");
@@ -72,7 +74,7 @@ public class guiUsuario extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(10, 11, 70, 14);
 
-       
+        
         caja1.setToolTipText("Introduce el nombre de usuario");
         caja1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -90,7 +92,7 @@ public class guiUsuario extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(10, 57, 90, 14);
 
-       
+        
         caja2.setToolTipText("Introduce la contraseña del usuario");
         caja2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -111,7 +113,7 @@ public class guiUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLimpiar);
-        btnLimpiar.setBounds(10, 120, 90, 23);
+        btnLimpiar.setBounds(10, 140, 90, 23);
 
         comboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Búsqueda precisa", "Búsqueda amplia" }));
         comboFiltro.setToolTipText("Busca que los datos sean exactamente como en los campos en búsqueda precisa, con la búsqueda amplia busca cualquier coincidencia por cada campo");
@@ -147,6 +149,16 @@ public class guiUsuario extends javax.swing.JFrame {
         });
         getContentPane().add(btnOperacion);
         btnOperacion.setBounds(150, 110, 100, 23);
+
+        jButton1.setText("Aplicar");
+        jButton1.setToolTipText("Aplica todos los cambios realizados");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(10, 110, 90, 23);
 
         jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\bryan\\OneDrive\\one drive\\Documentos\\NetBeansProjects\\ProyectoFinalTBD\\archivos\\guiUsuario.png")); // NOI18N
         getContentPane().add(jLabel3);
@@ -291,6 +303,11 @@ public class guiUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboFiltroActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ConexionBD.Transaccion("COMMIT;");
+        ConexionBD.Transaccion("START TRANSACTION;");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -416,6 +433,7 @@ public class guiUsuario extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField caja2;
     private javax.swing.JComboBox<String> comboFiltro;
     private javax.swing.JComboBox<String> comboOperacion;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

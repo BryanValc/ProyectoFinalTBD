@@ -4,6 +4,7 @@
  */
 package vista;
 
+import conexionBD.ConexionBD;
 import controlador.CityDAO;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
@@ -52,6 +53,7 @@ public class guiCity extends javax.swing.JFrame {
         comboFiltro = new javax.swing.JComboBox<>();
         comboOperacion = new javax.swing.JComboBox<>();
         btnOperacion = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
         setTitle("Formulario ciudad");
@@ -189,6 +191,16 @@ public class guiCity extends javax.swing.JFrame {
         });
         getContentPane().add(btnOperacion);
         btnOperacion.setBounds(460, 100, 100, 23);
+
+        jButton1.setText("Aplicar");
+        jButton1.setToolTipText("Aplica todos los cambios realizados");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(290, 70, 100, 23);
 
         jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\bryan\\OneDrive\\one drive\\Documentos\\NetBeansProjects\\ProyectoFinalTBD\\archivos\\guiCity.png")); // NOI18N
         getContentPane().add(jLabel6);
@@ -478,6 +490,11 @@ public class guiCity extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnOperacionActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ConexionBD.Transaccion("COMMIT;");
+        ConexionBD.Transaccion("START TRANSACTION;");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -519,6 +536,7 @@ public class guiCity extends javax.swing.JFrame {
     private javax.swing.JTextField caja5;
     private javax.swing.JComboBox<String> comboFiltro;
     private javax.swing.JComboBox<String> comboOperacion;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
