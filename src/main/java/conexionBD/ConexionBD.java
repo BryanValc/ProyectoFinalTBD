@@ -14,6 +14,7 @@ import modelo.*;
 public class ConexionBD {
     
     private static PreparedStatement pstm;
+    private static CallableStatement cs;
     private static ResultSet rs;
 	
     private static ConexionBD conexionBD;
@@ -52,6 +53,7 @@ public class ConexionBD {
 	
     static void cerrarConnexion() {
         try {
+            cs.close();
             pstm.close();
             conexion.close();
         } catch (SQLException e) {
@@ -82,18 +84,14 @@ public class ConexionBD {
         return false;
     }
     
-    public static int llamada(){
+    public static void llamada(){
         try{
-            String simpleProc = "{ sp_CantidadDePaises(?) }";
-            CallableStatement cs = conexion.prepareCall(simpleProc);
-            cs.registerOutParameter(1, java.sql.Types.INTEGER);
-            cs.execute();
-            int param1 = cs.getInt(1);
-            return param1;
+            String simpleProc = "{sp_CantidadDePaises()}";
+            cs = conexion.prepareCall(simpleProc);
+            cs.executeUpdate();
         } catch (Exception ex) {
             System.out.printf("Error al ejecutar la llamada");
 	}
-        return 0;
     }
     
     public static ResultSet ejecutarConsulta(String sql) {

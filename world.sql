@@ -130,6 +130,8 @@ CREATE TABLE `countrylanguageBkp` (
   `DeletionDate` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+
 DELIMITER //
 CREATE TRIGGER eliminarCiudad BEFORE DELETE ON `countrylanguage` FOR EACH ROW
 BEGIN
@@ -137,18 +139,20 @@ INSERT INTO `countrylanguageBkp` SET CountryCode=old.CountryCode, Language=old.L
 END //
 DELIMITER ; 
 
-SET GLOBAL cantidad=100;
-set PERSIST cantidad=239;
+CREATE TABLE Conteo(
+  cantidad BIGINT)ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO Conteo VALUES(239);
 
 DELIMITER //
-CREATE PROCEDURE sp_CantidadDePaises(OUT cnt int)
+CREATE PROCEDURE sp_CantidadDePaises()
 BEGIN
-    select count(*) into cnt from Country;
+    DECLARE cnt INT;
+    SET cnt = (SELECT COUNT(*) FROM Country);
+    UPDATE Conteo SET cantidad=cnt;
 END //
 DELIMITER ;
 
 
 
-CALL sp_CantidadDePaises(@cantidad);
-Select @cantidad as `cantidad`;
+CALL sp_CantidadDePaises();

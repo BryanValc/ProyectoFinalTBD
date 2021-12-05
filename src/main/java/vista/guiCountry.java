@@ -31,11 +31,9 @@ public class guiCountry extends javax.swing.JFrame {
     }
     
     public void cantidadPaises() {
-        jtfCntPaises.setText("Países: "+ConexionBD.llamada());
+        
     }
     
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,7 +80,8 @@ public class guiCountry extends javax.swing.JFrame {
         comboOperacion = new javax.swing.JComboBox<>();
         btnOperacion = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jtfCntPaises = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jLabel16 = new javax.swing.JLabel();
 
         setTitle("Formulario país");
@@ -480,16 +479,10 @@ public class guiCountry extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(750, 230, 100, 23);
 
-        jtfCntPaises.setEditable(false);
-        jtfCntPaises.setText("Países: ");
-        jtfCntPaises.setToolTipText("Cantidad de países");
-        jtfCntPaises.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfCntPaisesActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jtfCntPaises);
-        jtfCntPaises.setBounds(740, 90, 110, 30);
+        jScrollPane2.setViewportView(jTable2);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(730, 60, 110, 50);
 
         jLabel16.setIcon(new javax.swing.ImageIcon("C:\\Users\\bryan\\OneDrive\\one drive\\Documentos\\NetBeansProjects\\ProyectoFinalTBD\\archivos\\guiCountry.png")); // NOI18N
         getContentPane().add(jLabel16);
@@ -516,6 +509,19 @@ public class guiCountry extends javax.swing.JFrame {
 		    }
 		});
                 jScrollPane1.getViewport().add(jTable1);
+                
+                ResultSetTableModel modeloDatos2 =null;
+                
+                try {
+			modeloDatos2 = new ResultSetTableModel("com.mysql.cj.jdbc.Driver","jdbc:mysql://localhost:3306/world","SELECT * FROM Conteo;");
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+                jScrollPane2.getViewport().remove(jTable2);
+		jTable2 = new JTable(modeloDatos2);
+                jScrollPane2.getViewport().add(jTable2);
                 
 	}
     
@@ -1134,12 +1140,9 @@ public class guiCountry extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ConexionBD.Transaccion("COMMIT;");
+        ConexionBD.ejecutarConsulta("CALL sp_CantidadDePaises();");
         ConexionBD.Transaccion("START TRANSACTION;");
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jtfCntPaisesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfCntPaisesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfCntPaisesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1214,7 +1217,8 @@ public class guiCountry extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jtfCntPaises;
+    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

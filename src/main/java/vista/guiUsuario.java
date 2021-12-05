@@ -305,6 +305,7 @@ public class guiUsuario extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ConexionBD.Transaccion("COMMIT;");
+        ConexionBD.ejecutarConsulta("CALL sp_CantidadDePaises();");
         ConexionBD.Transaccion("START TRANSACTION;");
     }//GEN-LAST:event_jButton1ActionPerformed
 
