@@ -4,17 +4,13 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,6 +28,7 @@ public class ActivityConsultas extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     List<City> e;
     EditText id;
+    EditText nm;
 
 
     @Override
@@ -39,11 +36,12 @@ public class ActivityConsultas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultas);
 
-        recycler=findViewById(R.id.recyclerView1);
+        recycler=findViewById(R.id.recyclerViewConsultas);
         recycler.setHasFixedSize(true);
         layoutManager=new LinearLayoutManager(this);
         recycler.setLayoutManager(layoutManager);
         id = findViewById(R.id.caja_id4);
+        nm = findViewById(R.id.caja_name4);
 
         id.addTextChangedListener(new TextWatcher() {
             @Override
@@ -60,18 +58,18 @@ public class ActivityConsultas extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 String[] datos = {""};
                 int[] c = new int[1];
-                if (!id.getText().toString().isEmpty()) {
+                if (!id.getText().toString().isEmpty()||!nm.getText().toString().isEmpty()) {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
                             WorldBD conexionBD=WorldBD.getAppDatabase(getBaseContext());
-                            e=null;
-                            e=conexionBD.cityDAO().busquedaFiltrada("%"+id.getText().toString()+"%");
-                            /*c[0]=e.size();
-                            for(int i=0;i<c[0];i++){
-                                datos[0]=datos[0]+e.get(i)+"/";
+                            if(!id.getText().toString().isEmpty()&&!nm.getText().toString().isEmpty()){
+                                e=conexionBD.cityDAO().busquedaFiltrada("%"+id.getText().toString()+"%","%"+nm.getText().toString()+"%");
+                            }else if(!id.getText().toString().isEmpty()){
+                                e=conexionBD.cityDAO().buscarPorId("%"+id.getText().toString()+"%");
+                            }else if(!nm.getText().toString().isEmpty()){
+                                e=conexionBD.cityDAO().buscarPorNombre("%"+nm.getText().toString()+"%");
                             }
-                            adapter=new AdaptadorRegistros(datos[0].split("/"));*/
                             adapter=new AdaptadorRegistros(e,getBaseContext());
                             recycler.setAdapter(adapter);
 
@@ -83,14 +81,7 @@ public class ActivityConsultas extends AppCompatActivity {
                         public void run() {
                             WorldBD conexionBD = WorldBD.getAppDatabase(getBaseContext());
                             e=conexionBD.cityDAO().optenerTodos();
-                            /*c[0]=e.size();
-                            for(City a:e){
-                                Log.d("datos->",a.toString());
-                            }
-                            for(int i=0;i<c[0];i++){
-                                datos[0]=datos[0]+e.get(i)+"/";
-                            }
-                            adapter=new AdaptadorRegistros(datos[0].split("/"));*/
+
                             adapter=new AdaptadorRegistros(e,getBaseContext());
                             recycler.setAdapter(adapter);
                         }
@@ -103,23 +94,57 @@ public class ActivityConsultas extends AppCompatActivity {
             }
         });
 
-        /*new Thread(new Runnable() {
+        nm.addTextChangedListener(new TextWatcher() {
             @Override
-            public void run() {
-                WorldBD conexionDB = WorldBD.getAppDatabase(getBaseContext());
-                e=conexionDB.cityDAO().optenerTodos();
-                for(City a:e){
-                    Log.d("datos->",a.toString());
-                }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ArrayAdapter adaptador=new ArrayAdapter(getBaseContext(), android.R.layout.simple_list_item_1,e);
-                        lista.setAdapter(adaptador);
-                    }
-                });
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
             }
-        }).start();*/
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String[] datos = {""};
+                int[] c = new int[1];
+                if (!id.getText().toString().isEmpty()||!nm.getText().toString().isEmpty()) {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            WorldBD conexionBD=WorldBD.getAppDatabase(getBaseContext());
+                            if(!id.getText().toString().isEmpty()&&!nm.getText().toString().isEmpty()){
+                                e=conexionBD.cityDAO().busquedaFiltrada("%"+id.getText().toString()+"%","%"+nm.getText().toString()+"%");
+                            }else if(!id.getText().toString().isEmpty()){
+                                e=conexionBD.cityDAO().buscarPorId("%"+id.getText().toString()+"%");
+                            }else if(!nm.getText().toString().isEmpty()){
+                                e=conexionBD.cityDAO().buscarPorNombre("%"+nm.getText().toString()+"%");
+                            }
+
+                            adapter=new AdaptadorRegistros(e,getBaseContext());
+                            recycler.setAdapter(adapter);
+
+                        }
+                    }).start();
+                }else{
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            WorldBD conexionBD = WorldBD.getAppDatabase(getBaseContext());
+                            e=conexionBD.cityDAO().optenerTodos();
+
+                            adapter=new AdaptadorRegistros(e,getBaseContext());
+                            recycler.setAdapter(adapter);
+                        }
+                    }).start();
+                }
+
+
+
+
+            }
+        });
 
     }
 
@@ -231,39 +256,5 @@ class AdaptadorRegistros extends RecyclerView.Adapter<AdaptadorRegistros.ViewHol
         }
 
     }
-
-
-
-    /*
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
-        public TextView textView;
-        public MyViewHolder(TextView t) {
-            super(t);
-            textView = t;
-        }
-    }
-
-    public AdaptadorRegistros(String [] mDataset){
-        this.mDataset = mDataset;
-    }
-
-    @NonNull
-    @Override
-    public AdaptadorRegistros.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        TextView tv = (TextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.textviewreciclerview,
-                parent, false);
-        MyViewHolder vh = new MyViewHolder(tv);
-        return vh;
-    }
-
-    @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.textView.setText(mDataset[position]);
-    }
-
-    @Override
-    public int getItemCount() {
-        return mDataset.length;
-    }*/
 
 }

@@ -11,8 +11,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.ArrayList;
+/*
 import java.util.logging.Level;
 import java.util.logging.Logger;
+*/
 import modelo.Usuario;
 import javax.swing.*;
 
@@ -234,7 +236,7 @@ public class Login extends javax.swing.JFrame {
                 try {
                     new Login().setVisible(true);
                 } catch (IOException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                    //Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

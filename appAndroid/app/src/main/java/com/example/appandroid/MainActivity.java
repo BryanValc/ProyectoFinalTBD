@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 WorldBD conexion = WorldBD.getAppDatabase(getBaseContext());
                 Usuario usr = conexion.usuarioDAO().buscarPorNombre(cajaUsername.getText().toString());
                 if (!cajaUsername.getText().toString().isEmpty() && !cajaPassword.getText().toString().isEmpty() && usr!=null){
-                    if (usr.getUsername().equals(usrMain.getUsername()) && usr.getPassword().equals(usrMain.getPassword())) {
+                    if (usr.getUsername().equals(usrMain.getUsername()) && cajaPassword.getText().toString().equals(usrMain.getPassword())) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
