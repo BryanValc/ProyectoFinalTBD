@@ -1,5 +1,6 @@
 package com.example.appandroid;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,11 +67,12 @@ public class ActivityConsultas extends AppCompatActivity {
                             WorldBD conexionBD=WorldBD.getAppDatabase(getBaseContext());
                             e=null;
                             e=conexionBD.cityDAO().busquedaFiltrada("%"+id.getText().toString()+"%");
-                            c[0]=e.size();
+                            /*c[0]=e.size();
                             for(int i=0;i<c[0];i++){
                                 datos[0]=datos[0]+e.get(i)+"/";
                             }
-                            adapter=new AdaptadorRegistros(datos[0].split("/"));
+                            adapter=new AdaptadorRegistros(datos[0].split("/"));*/
+                            adapter=new AdaptadorRegistros(e,getBaseContext());
                             recycler.setAdapter(adapter);
 
                         }
@@ -80,14 +83,15 @@ public class ActivityConsultas extends AppCompatActivity {
                         public void run() {
                             WorldBD conexionBD = WorldBD.getAppDatabase(getBaseContext());
                             e=conexionBD.cityDAO().optenerTodos();
-                            c[0]=e.size();
+                            /*c[0]=e.size();
                             for(City a:e){
                                 Log.d("datos->",a.toString());
                             }
                             for(int i=0;i<c[0];i++){
                                 datos[0]=datos[0]+e.get(i)+"/";
                             }
-                            adapter=new AdaptadorRegistros(datos[0].split("/"));
+                            adapter=new AdaptadorRegistros(datos[0].split("/"));*/
+                            adapter=new AdaptadorRegistros(e,getBaseContext());
                             recycler.setAdapter(adapter);
                         }
                     }).start();
@@ -169,11 +173,68 @@ public class ActivityConsultas extends AppCompatActivity {
 
 
 
+                                                                        //MyViewHolder
+class AdaptadorRegistros extends RecyclerView.Adapter<AdaptadorRegistros.ViewHolder>{
 
-class AdaptadorRegistros extends RecyclerView.Adapter<AdaptadorRegistros.MyViewHolder>{
+    //private String[] mDataset;
 
-    private String[] mDataset;
+    private List<City> mData;
+    private LayoutInflater mInflater;
+    private Context context;
 
+    public AdaptadorRegistros(List<City> itemList, Context context){
+        this.mInflater = LayoutInflater.from(context);
+        this.context = context;
+        mData = itemList;
+    }
+
+    @Override
+    public int getItemCount() {
+        return mData.size();
+    }
+
+    @Override
+    public AdaptadorRegistros.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+        View view = mInflater.inflate(R.layout.list_element,null);
+        return new AdaptadorRegistros.ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(final AdaptadorRegistros.ViewHolder holder, final int position){
+        holder.bindData(mData.get(position));
+    }
+
+    public void setItems(List<City> items){
+        mData = items;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView iconImage;
+        TextView id, name, countryCode, district, population;
+
+        ViewHolder(View itemView){
+            super(itemView);
+            iconImage = itemView.findViewById(R.id.iconImageView);
+            id = itemView.findViewById(R.id.cityId);
+            name = itemView.findViewById(R.id.cityName);
+            countryCode = itemView.findViewById(R.id.cityCountryCode);
+            district = itemView.findViewById(R.id.cityDistrict);
+            population = itemView.findViewById(R.id.cityPopulation);
+        }
+
+        void bindData(final City city) {
+            id.setText("id: "+city.getId());
+            name.setText("nombre: "+city.getName());
+            countryCode.setText("código de país: "+city.getCountryCode());
+            district.setText("distrito: "+city.getDistrict());
+            population.setText("población: "+city.getPopulation());
+        }
+
+    }
+
+
+
+    /*
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         public TextView textView;
         public MyViewHolder(TextView t) {
@@ -203,5 +264,6 @@ class AdaptadorRegistros extends RecyclerView.Adapter<AdaptadorRegistros.MyViewH
     @Override
     public int getItemCount() {
         return mDataset.length;
-    }
+    }*/
+
 }

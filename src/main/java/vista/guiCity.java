@@ -91,6 +91,11 @@ public class guiCity extends javax.swing.JFrame {
         btnLimpiar.setBounds(290, 100, 100, 23);
 
         caja1.setToolTipText("Introduce el ID de la ciudad");
+        caja1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                caja1ActionPerformed(evt);
+            }
+        });
         caja1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 caja1KeyPressed(evt);
@@ -495,6 +500,10 @@ public class guiCity extends javax.swing.JFrame {
         ConexionBD.ejecutarConsulta("CALL sp_CantidadDePaises();");
         ConexionBD.Transaccion("START TRANSACTION;");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void caja1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caja1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_caja1ActionPerformed
 
     /**
      * @param args the command line arguments
